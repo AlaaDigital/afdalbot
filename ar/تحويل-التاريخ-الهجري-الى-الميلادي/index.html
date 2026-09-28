@@ -2,84 +2,104 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>تحويل التاريخ الهجري إلى الميلادي والعكس</title>
+<meta name="description" content="أداة مجانية لتحويل التاريخ من الهجري إلى الميلادي والعكس بدقة، مع عرض تاريخ اليوم بالتقويمين.">
+<link rel="canonical" href="https://afdalbot.com/ar/%D8%AA%D8%AD%D9%88%D9%8A%D9%84-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE-%D8%A7%D9%84%D9%87%D8%AC%D8%B1%D9%8A-%D8%A7%D9%84%D9%89-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF%D9%8A/">
+<!-- الخط من الجذر /fonts/ كما في هيكل مشروعك -->
 <link rel="preload" href="/fonts/cairo-v31-arabic_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/cairo-v31-arabic_latin-700.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"هل النتيجة دقيقة 100%؟","acceptedAnswer":{"@type":"Answer","text":"الأداة تعتمد التقويم الهجري الحسابي (التبويبي) المبني على معادلة فلكية ثابتة، وهو معتمد في أغلب التطبيقات والمكتبات البرمجية. قد يختلف الناتج بيوم واحد عن التقويم الرسمي المعتمد على رؤية الهلال الفعلية في بعض الأشهر."}},{"@type":"Question","name":"كم عدد أيام السنة الهجرية؟","acceptedAnswer":{"@type":"Answer","text":"السنة الهجرية 354 يومًا في الغالب، و355 يومًا في السنوات الكبيسة، مقارنة بـ365 أو 366 يومًا في السنة الميلادية."}},{"@type":"Question","name":"لماذا يتغير موعد شهر رمضان كل سنة ميلادية؟","acceptedAnswer":{"@type":"Answer","text":"لأن التقويم الهجري قمري ويقصر عن التقويم الشمسي بنحو 10-11 يومًا سنويًا، فتتقدم كل المناسبات الهجرية (ومنها رمضان) بهذا الفارق كل سنة ميلادية."}},{"@type":"Question","name":"هل يمكن تحويل تاريخ قبل الهجرة؟","acceptedAnswer":{"@type":"Answer","text":"هذه النسخة مخصصة للتواريخ بعد بداية التقويم الهجري (من سنة 1 هـ فما بعد). التواريخ الميلادية المقابلة قبل ذلك تحتاج معالجة مختلفة."}}]}
+</script>
 <style>
   @font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-regular.woff2') format('woff2');}
   @font-face{font-family:'Cairo';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-700.woff2') format('woff2');}
   @font-face{font-family:'Cairo';font-style:normal;font-weight:900;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-900.woff2') format('woff2');}
   @font-face{font-family:'Cairo Fallback';src:local('Tahoma'),local('Arial');ascent-override:105%;descent-override:35%;line-gap-override:10%;size-adjust:102%;}
   :root{--ink:#241f16;--paper:#faf7f0;--panel:#fffdf8;--brass:#8a6526;--brass-dark:#6d4e1b;--indigo:#1b2540;--line:#e4dcc8;--muted:#5a5444;}
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Cairo','Cairo Fallback',Tahoma,Arial,sans-serif;line-height:1.8;}
+  *{box-sizing:border-box;}html{scroll-padding-top:0;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Cairo','Cairo Fallback',-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.8;-webkit-font-smoothing:antialiased;}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   .wrap{max-width:720px;margin:0 auto;padding:2.5rem 1.25rem 4rem;}
   header{text-align:center;margin-bottom:1.2rem;}.kicker{color:var(--brass-dark);font-weight:700;font-size:.95rem;}h1{font-size:2rem;font-weight:900;margin:.35rem 0 .5rem;line-height:1.4;}header p{color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:52ch;}
   .share-bar{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.25rem 0 1.9rem;min-height:44px;}
-  .share-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:700;font-size:.88rem;cursor:pointer;font-family:inherit;min-height:44px;}
-  .share-btn.primary{background:var(--brass);border-color:var(--brass);color:#fff;}
-  /* اصلاح مشكلة التوست - كان ظاهر دائما */
+  .share-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:700;font-size:.88rem;cursor:pointer;font-family:'Cairo','Cairo Fallback',sans-serif;min-height:44px;}
+  .share-btn.primary{background:var(--brass);border-color:var(--brass);color:#fff;}.share-btn:hover{border-color:var(--brass);}.share-btn.primary:hover{background:var(--brass-dark);}
   .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--indigo);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:all .25s;z-index:9999;}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
   .today-strip{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:1.75rem 0 2.25rem;min-height:68px;}
   .today-strip>div{flex:1;background:var(--panel);padding:.85rem 1rem;text-align:center;}
-  .today-strip .lbl{font-size:.78rem;color:var(--muted);}.today-strip .val{font-weight:700;font-size:.98rem;min-height:1.4em;}
+  .today-strip .lbl{font-size:.78rem;color:var(--muted);margin-bottom:.15rem;}.today-strip .val{font-weight:700;font-size:.98rem;min-height:1.4em;}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.75rem;}
   .tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;min-height:44px;}
-  .tab{flex:1;padding:.7rem;text-align:center;border-radius:9px;cursor:pointer;font-weight:700;font-size:.92rem;border:1px solid var(--line);color:var(--muted);background:transparent;font-family:inherit;min-height:44px;}
-  .tab.active{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .tab{flex:1;padding:.7rem;text-align:center;border-radius:9px;cursor:pointer;font-weight:700;font-size:.92rem;border:1px solid var(--line);color:var(--muted);background:transparent;font-family:'Cairo','Cairo Fallback',sans-serif;min-height:44px;}
+  .tab.active{background:var(--indigo);color:#fff;border-color:var(--indigo);}.tab:focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
   .panel{display:none;}.panel.active{display:block;}
   .row{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:.6rem;margin-bottom:1.1rem;}
-  select{width:100%;padding:.65rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-family:inherit;font-size:.95rem;min-height:44px;}
-  button.convert{width:100%;padding:.85rem;border:none;border-radius:9px;cursor:pointer;background:var(--brass);color:#fff;font-family:inherit;font-weight:700;font-size:1rem;min-height:44px;}
+  select{width:100%;padding:.65rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-family:'Cairo','Cairo Fallback',inherit;font-size:.95rem;min-height:44px;}
+  button.convert{width:100%;padding:.85rem;border:none;border-radius:9px;cursor:pointer;background:var(--brass);color:#fff;font-family:'Cairo','Cairo Fallback',inherit;font-weight:700;font-size:1rem;min-height:44px;}button.convert:hover{background:var(--brass-dark);}
   .result{margin-top:1.25rem;padding:1.1rem;border-radius:10px;background:var(--paper);border:1px dashed var(--line);text-align:center;display:none;min-height:72px;}
-  .result.show{display:block;}.result .big{font-size:1.35rem;font-weight:900;}
+  .result.show{display:block;}.result .big{font-size:1.35rem;font-weight:900;}.result .small{color:var(--muted);font-size:.85rem;margin-top:.25rem;}
   section.about{margin-top:2.5rem;}section.about h2,.faq h2{font-size:1.15rem;font-weight:700;margin-bottom:.6rem;}
-  .faq{margin-top:2.5rem;}details{border-bottom:1px solid var(--line);padding:.9rem 0;}details summary{font-weight:700;cursor:pointer;}details p{color:var(--muted);margin:.6rem 0 0;font-size:.92rem;}
+  .faq{margin-top:2.5rem;}details{border-bottom:1px solid var(--line);padding:.9rem 0;}details summary{font-weight:700;cursor:pointer;font-size:.98rem;}details p{color:var(--muted);margin:.6rem 0 0;font-size:.92rem;}
   footer{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--line);}footer p{color:var(--muted);font-size:.82rem;margin:0;}
+  @media (max-width:420px){.row{grid-template-columns:1fr 1fr;}.row select:nth-child(1){grid-column:1 / span 2;}}
 </style>
 </head>
 <body>
-<main class="wrap">
-<header><div class="kicker">أداة مجانية</div><h1>تحويل التاريخ الهجري إلى الميلادي والعكس</h1><p>حوّل أي تاريخ بين التقويمين الهجري والميلادي بضغطة واحدة.</p></header>
-<nav class="share-bar">
-<button type="button" class="share-btn primary" onclick="copyArabicLink()">🔗 نسخ الرابط العربي</button>
-<button type="button" class="share-btn" onclick="shareWhatsApp()">واتساب</button>
-<button type="button" class="share-btn" onclick="shareFacebook()">فيسبوك</button>
-<button type="button" class="share-btn" onclick="shareTelegram()">تيليجرام</button>
-<button type="button" class="share-btn" onclick="shareX()">X</button>
+<main class="wrap" id="main-content">
+<header><div class="kicker">أداة مجانية</div><h1>تحويل التاريخ الهجري إلى الميلادي والعكس</h1><p>حوّل أي تاريخ بين التقويمين الهجري والميلادي بضغطة واحدة، بدقة تقويمية قائمة على الحساب الفلكي التبويبي.</p></header>
+<nav class="share-bar" aria-label="مشاركة الصفحة">
+<button type="button" class="share-btn primary" onclick="copyArabicLink()" aria-label="نسخ الرابط بالعربي">🔗 نسخ الرابط العربي</button>
+<button type="button" class="share-btn" onclick="shareWhatsApp()" aria-label="مشاركة على واتساب">واتساب</button>
+<button type="button" class="share-btn" onclick="shareFacebook()" aria-label="مشاركة على فيسبوك">فيسبوك</button>
+<button type="button" class="share-btn" onclick="shareTelegram()" aria-label="مشاركة على تيليجرام">تيليجرام</button>
+<button type="button" class="share-btn" onclick="shareX()" aria-label="مشاركة على X">X</button>
 </nav>
-<div id="toast" class="toast">تم نسخ الرابط بالعربي ✅</div>
-<section class="today-strip" id="todayStrip"><div><div class="lbl">اليوم ميلاديًا</div><div class="val">&nbsp;</div></div><div><div class="lbl">اليوم هجريًا</div><div class="val">&nbsp;</div></div></section>
-<section class="card"><div class="tabs"><button type="button" class="tab active" data-tab="h2g">هجري إلى ميلادي</button><button type="button" class="tab" data-tab="g2h">ميلادي إلى هجري</button></div>
-<div class="panel active" id="panel-h2g"><div class="row"><select id="h_day"></select><select id="h_month"></select><select id="h_year"></select></div><button type="button" class="convert" onclick="convertH2G()">حوّل التاريخ</button><div class="result" id="result-h2g"><div class="big" id="result-h2g-text"></div></div></div>
-<div class="panel" id="panel-g2h" hidden><div class="row"><select id="g_day"></select><select id="g_month"></select><select id="g_year"></select></div><button type="button" class="convert" onclick="convertG2H()">حوّل التاريخ</button><div class="result" id="result-g2h"><div class="big" id="result-g2h-text"></div></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite">تم نسخ الرابط بالعربي ✅</div>
+<section class="today-strip" id="todayStrip" aria-label="تاريخ اليوم"><div><div class="lbl">اليوم ميلاديًا</div><div class="val">&nbsp;</div></div><div><div class="lbl">اليوم هجريًا</div><div class="val">&nbsp;</div></div></section>
+<section class="card" aria-label="أداة التحويل">
+<div class="tabs" role="tablist" aria-label="نوع التحويل">
+<button type="button" class="tab active" role="tab" aria-selected="true" aria-controls="panel-h2g" id="tab-h2g" data-tab="h2g">هجري إلى ميلادي</button>
+<button type="button" class="tab" role="tab" aria-selected="false" aria-controls="panel-g2h" id="tab-g2h" data-tab="g2h">ميلادي إلى هجري</button>
+</div>
+<div class="panel active" id="panel-h2g" role="tabpanel" aria-labelledby="tab-h2g">
+<div class="row"><label class="sr-only" for="h_day">اليوم الهجري</label><select id="h_day" aria-label="اليوم الهجري"></select><label class="sr-only" for="h_month">الشهر الهجري</label><select id="h_month" aria-label="الشهر الهجري"></select><label class="sr-only" for="h_year">السنة الهجرية</label><select id="h_year" aria-label="السنة الهجرية"></select></div>
+<button type="button" class="convert" onclick="convertH2G()" aria-label="حوّل من هجري إلى ميلادي">حوّل التاريخ</button>
+<div class="result" id="result-h2g" aria-live="polite"><div class="big" id="result-h2g-text"></div><div class="small">التاريخ الميلادي الموافق</div></div>
+</div>
+<div class="panel" id="panel-g2h" role="tabpanel" aria-labelledby="tab-g2h" hidden>
+<div class="row"><label class="sr-only" for="g_day">اليوم الميلادي</label><select id="g_day" aria-label="اليوم الميلادي"></select><label class="sr-only" for="g_month">الشهر الميلادي</label><select id="g_month" aria-label="الشهر الميلادي"></select><label class="sr-only" for="g_year">السنة الميلادية</label><select id="g_year" aria-label="السنة الميلادية"></select></div>
+<button type="button" class="convert" onclick="convertG2H()" aria-label="حوّل من ميلادي إلى هجري">حوّل التاريخ</button>
+<div class="result" id="result-g2h" aria-live="polite"><div class="big" id="result-g2h-text"></div><div class="small">التاريخ الهجري الموافق</div></div>
+</div>
 </section>
-<section class="about"><h2>ما الفرق بين التقويمين؟</h2><p>التقويم الهجري قمري 354 يوم، والميلادي شمسي 365 يوم.</p></section>
-<section class="faq"><h2>أسئلة شائعة</h2><details><summary>هل النتيجة دقيقة؟</summary><p>تقويم حسابي قد يختلف بيوم عن الرؤية.</p></details></section>
-<footer><p>الحسابات مبنية على التقويم التبويبي.</p></footer>
+<section class="about"><h2>ما الفرق بين التقويمين؟</h2><p>التقويم الهجري تقويم قمري يبدأ من هجرة النبي محمد ﷺ من مكة إلى المدينة، وتتكون السنة فيه من 354 أو 355 يومًا تقريبًا. أما التقويم الميلادي فتقويم شمسي تعتمده أغلب دول العالم رسميًا، وتتكون سنته من 365 أو 366 يومًا. الفارق بين الاثنين يجعل التاريخ الهجري يتقدم نحو 10 إلى 11 يومًا كل سنة ميلادية.</p></section>
+<section class="faq"><h2>أسئلة شائعة</h2><details><summary>هل النتيجة دقيقة 100%؟</summary><p>الأداة تعتمد التقويم الهجري الحسابي (التبويبي) المبني على معادلة فلكية ثابتة، وهو معتمد في أغلب التطبيقات والمكتبات البرمجية. قد يختلف الناتج بيوم واحد عن التقويم الرسمي المعتمد على رؤية الهلال الفعلية في بعض الأشهر، وهذا فرق معروف ومتوقع بين الطريقتين.</p></details><details><summary>كم عدد أيام السنة الهجرية؟</summary><p>السنة الهجرية 354 يومًا في الغالب، و355 يومًا في السنوات الكبيسة، مقارنة بـ365 أو 366 يومًا في السنة الميلادية.</p></details><details><summary>لماذا يتغير موعد شهر رمضان كل سنة ميلادية؟</summary><p>لأن التقويم الهجري قمري ويقصر عن التقويم الشمسي بنحو 10-11 يومًا سنويًا، فتتقدم كل المناسبات الهجرية (ومنها رمضان) بهذا الفارق كل سنة ميلادية.</p></details><details><summary>هل يمكن تحويل تاريخ قبل الهجرة؟</summary><p>هذه النسخة مخصصة للتواريخ بعد بداية التقويم الهجري (من سنة 1 هـ فما بعد). التواريخ الميلادية المقابلة قبل ذلك تحتاج معالجة مختلفة.</p></details></section>
+<footer><p>الحسابات مبنية على التقويم الهجري التبويبي (الحسابي)، وقد تختلف عن التقويم الرسمي المعتمد على رؤية الهلال بيوم واحد في بعض الأشهر.</p></footer>
 </main>
 <script>
-function getArabicUrl(){try{return decodeURI(location.href);}catch(e){return location.href;}}
-function showToast(msg){var t=document.getElementById('toast');if(msg) t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2200);}
-function copyArabicLink(){var url=getArabicUrl();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){showToast('تم نسخ الرابط بالعربي ✅');}).catch(function(){fallbackCopy(url);});}else{fallbackCopy(url);}}
-function fallbackCopy(text){var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('تم نسخ الرابط بالعربي ✅');}catch(e){prompt('انسخ الرابط:',text);}document.body.removeChild(ta);}
+function getArabicUrl(){try{return decodeURI(window.location.href);}catch(e){return window.location.href;}}
+function getEncodedUrl(){return window.location.href;}
+function showToast(msg){const t=document.getElementById('toast');if(msg) t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+function copyArabicLink(){const arabicUrl=getArabicUrl();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(arabicUrl).then(()=>showToast('تم نسخ الرابط بالعربي ✅')).catch(()=>fallbackCopy(arabicUrl));}else{fallbackCopy(arabicUrl);}}
+function fallbackCopy(text){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('تم نسخ الرابط بالعربي ✅');}catch(e){}document.body.removeChild(ta);}
 function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent(getArabicUrl()),'_blank');}
-function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank');}
-function shareTelegram(){window.open('https://t.me/share/url?url='+encodeURIComponent(location.href),'_blank');}
-function shareX(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href),'_blank');}
-function gregorianToJDN(y,m,d){var a=Math.floor((14-m)/12);var y2=y+4800-a;var m2=m+12*a-3;return d+Math.floor((153*m2+2)/5)+365*y2+Math.floor(y2/4)-Math.floor(y2/100)+Math.floor(y2/400)-32045;}
-function jdnToGregorian(jdn){var a=jdn+32044;var b=Math.floor((4*a+3)/146097);var c=a-Math.floor((146097*b)/4);var d=Math.floor((4*c+3)/1461);var e=c-Math.floor((1461*d)/4);var m=Math.floor((5*e+2)/153);var day=e-Math.floor((153*m+2)/5)+1;var month=m+3-12*Math.floor(m/10);var year=100*b+d-4800+Math.floor(m/10);return{year:year,month:month,day:day};}
-function jdnToHijri(jdn){var l=jdn-1948440+10632;var n=Math.floor((l-1)/10631);l=l-10631*n+354;var j=(Math.floor((10985-l)/5316))*(Math.floor((50*l)/17719))+(Math.floor(l/5670))*(Math.floor((43*l)/15238));l=l-(Math.floor((30-j)/15))*(Math.floor((17719*j)/50))-(Math.floor(j/16))*(Math.floor((15238*j)/43))+29;var hm=Math.floor((24*l)/709);var hd=l-Math.floor((709*hm)/24);var hy=30*n+j-30;return{year:hy,month:hm,day:hd};}
+function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(getEncodedUrl()),'_blank');}
+function shareTelegram(){window.open('https://t.me/share/url?url='+encodeURIComponent(getEncodedUrl())+'&text='+encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي'),'_blank');}
+function shareX(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(getEncodedUrl())+'&text='+encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي'),'_blank');}
+function gregorianToJDN(y,m,d){const a=Math.floor((14-m)/12);const y2=y+4800-a;const m2=m+12*a-3;return d+Math.floor((153*m2+2)/5)+365*y2+Math.floor(y2/4)-Math.floor(y2/100)+Math.floor(y2/400)-32045;}
+function jdnToGregorian(jdn){const a=jdn+32044;const b=Math.floor((4*a+3)/146097);const c=a-Math.floor((146097*b)/4);const d=Math.floor((4*c+3)/1461);const e=c-Math.floor((1461*d)/4);const m=Math.floor((5*e+2)/153);const day=e-Math.floor((153*m+2)/5)+1;const month=m+3-12*Math.floor(m/10);const year=100*b+d-4800+Math.floor(m/10);return{year,month,day};}
+function jdnToHijri(jdn){let l=jdn-1948440+10632;const n=Math.floor((l-1)/10631);l=l-10631*n+354;const j=(Math.floor((10985-l)/5316))*(Math.floor((50*l)/17719))+(Math.floor(l/5670))*(Math.floor((43*l)/15238));l=l-(Math.floor((30-j)/15))*(Math.floor((17719*j)/50))-(Math.floor(j/16))*(Math.floor((15238*j)/43))+29;const hm=Math.floor((24*l)/709);const hd=l-Math.floor((709*hm)/24);const hy=30*n+j-30;return{year:hy,month:hm,day:hd};}
 function hijriToJDN(hy,hm,hd){return Math.floor((11*hy+3)/30)+354*hy+30*hm-Math.floor((hm-1)/2)+hd+1948440-385;}
-var hijriMonths=["محرم","صفر","ربيع الأول","ربيع الآخر","جمادى الأولى","جمادى الآخرة","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة"];
-var gregMonths=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
-function fillSelect(el,c,s,l){el.innerHTML="";for(var i=0;i<c;i++){var o=document.createElement("option");var v=s+i;o.value=v;o.textContent=l?l[i]:v;el.appendChild(o);}}
-function initSelectors(){var todayJDN=gregorianToJDN(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate());var todayH=jdnToHijri(todayJDN);var todayG={year:new Date().getFullYear(),month:new Date().getMonth()+1,day:new Date().getDate()};fillSelect(document.getElementById('h_day'),30,1);fillSelect(document.getElementById('h_month'),12,1,hijriMonths);fillSelect(document.getElementById('h_year'),120,1390);document.getElementById('h_day').value=todayH.day;document.getElementById('h_month').value=todayH.month;document.getElementById('h_year').value=todayH.year;fillSelect(document.getElementById('g_day'),31,1);fillSelect(document.getElementById('g_month'),12,1,gregMonths);fillSelect(document.getElementById('g_year'),150,1950);document.getElementById('g_day').value=todayG.day;document.getElementById('g_month').value=todayG.month;document.getElementById('g_year').value=todayG.year;document.getElementById('todayStrip').innerHTML='<div><div class="lbl">اليوم ميلاديًا</div><div class="val">'+todayG.day+' '+gregMonths[todayG.month-1]+' '+todayG.year+'</div></div><div><div class="lbl">اليوم هجريًا</div><div class="val">'+todayH.day+' '+hijriMonths[todayH.month-1]+' '+todayH.year+'هـ</div></div>';}
-function convertH2G(){var d=+document.getElementById('h_day').value;var m=+document.getElementById('h_month').value;var y=+document.getElementById('h_year').value;var jdn=hijriToJDN(y,m,d);var g=jdnToGregorian(jdn);document.getElementById('result-h2g-text').textContent=g.day+' '+gregMonths[g.month-1]+' '+g.year+'م';document.getElementById('result-h2g').classList.add('show');}
-function convertG2H(){var d=+document.getElementById('g_day').value;var m=+document.getElementById('g_month').value;var y=+document.getElementById('g_year').value;var jdn=gregorianToJDN(y,m,d);var h=jdnToHijri(jdn);document.getElementById('result-g2h-text').textContent=h.day+' '+hijriMonths[h.month-1]+' '+h.year+'هـ';document.getElementById('result-g2h').classList.add('show');}
-document.querySelectorAll('.tab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');p.hidden=true;});tab.classList.add('active');document.getElementById('panel-'+tab.dataset.tab).classList.add('active');document.getElementById('panel-'+tab.dataset.tab).hidden=false;});});
+const hijriMonths=["محرم","صفر","ربيع الأول","ربيع الآخر","جمادى الأولى","جمادى الآخرة","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة"];
+const gregMonths=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+function fillSelect(el,count,start,labels){el.innerHTML="";for(let i=0;i<count;i++){const opt=document.createElement("option");const v=start+i;opt.value=v;opt.textContent=labels?labels[i]:v;el.appendChild(opt);}}
+function initSelectors(){const todayJDN=gregorianToJDN(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate());const todayH=jdnToHijri(todayJDN);const todayG={year:new Date().getFullYear(),month:new Date().getMonth()+1,day:new Date().getDate()};fillSelect(document.getElementById('h_day'),30,1);fillSelect(document.getElementById('h_month'),12,1,hijriMonths);fillSelect(document.getElementById('h_year'),120,1390);document.getElementById('h_day').value=todayH.day;document.getElementById('h_month').value=todayH.month;document.getElementById('h_year').value=todayH.year;fillSelect(document.getElementById('g_day'),31,1);fillSelect(document.getElementById('g_month'),12,1,gregMonths);fillSelect(document.getElementById('g_year'),150,1950);document.getElementById('g_day').value=todayG.day;document.getElementById('g_month').value=todayG.month;document.getElementById('g_year').value=todayG.year;document.getElementById('todayStrip').innerHTML=`<div><div class="lbl">اليوم ميلاديًا</div><div class="val">${todayG.day} ${gregMonths[todayG.month-1]} ${todayG.year}</div></div><div><div class="lbl">اليوم هجريًا</div><div class="val">${todayH.day} ${hijriMonths[todayH.month-1]} ${todayH.year}هـ</div></div>`;}
+function convertH2G(){const d=+document.getElementById('h_day').value;const m=+document.getElementById('h_month').value;const y=+document.getElementById('h_year').value;const jdn=hijriToJDN(y,m,d);const g=jdnToGregorian(jdn);document.getElementById('result-h2g-text').textContent=`${g.day} ${gregMonths[g.month-1]} ${g.year}م`;document.getElementById('result-h2g').classList.add('show');}
+function convertG2H(){const d=+document.getElementById('g_day').value;const m=+document.getElementById('g_month').value;const y=+document.getElementById('g_year').value;const jdn=gregorianToJDN(y,m,d);const h=jdnToHijri(jdn);document.getElementById('result-g2h-text').textContent=`${h.day} ${hijriMonths[h.month-1]} ${h.year}هـ`;document.getElementById('result-g2h').classList.add('show');}
+document.querySelectorAll('.tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});document.querySelectorAll('.panel').forEach(p=>{p.classList.remove('active');p.hidden=true;});tab.classList.add('active');tab.setAttribute('aria-selected','true');const panel=document.getElementById('panel-'+tab.dataset.tab);panel.classList.add('active');panel.hidden=false;});});
 initSelectors();
 </script>
 </body>
