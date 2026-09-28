@@ -6,6 +6,10 @@
 <title>تحويل التاريخ الهجري إلى الميلادي والعكس</title>
 <meta name="description" content="أداة مجانية لتحويل التاريخ من الهجري إلى الميلادي والعكس بدقة، مع عرض تاريخ اليوم بالتقويمين.">
 <link rel="canonical" href="https://afdalbot.com/ar/%D8%AA%D8%AD%D9%88%D9%8A%D9%84-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE-%D8%A7%D9%84%D9%87%D8%AC%D8%B1%D9%8A-%D8%A7%D9%84%D9%89-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF%D9%8A/">
+<!-- خط Cairo للتجربة -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,16 +42,16 @@
   html{scroll-padding-top: env(safe-area-inset-top, 0px);}
   body{
     margin:0; background:var(--paper); color:var(--ink);
-    font-family:-apple-system,"Segoe UI",Tahoma,Arial,sans-serif; line-height:1.7;
+    font-family:'Cairo',-apple-system,"Segoe UI",Tahoma,Arial,sans-serif; line-height:1.8;
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 4rem;}
   header{text-align:center; margin-bottom:1.2rem;}
   .kicker{color:var(--brass-dark); font-weight:700; font-size:.95rem; letter-spacing:.02em;}
-  h1{font-size:1.9rem; font-weight:900; margin:.35rem 0 .5rem; line-height:1.35;}
+  h1{font-size:2rem; font-weight:900; margin:.35rem 0 .5rem; line-height:1.4; font-family:'Cairo',sans-serif;}
   header p{color:var(--muted); font-size:1.02rem; margin:0; max-width:52ch; margin-inline:auto;}
 
-  /* زر المشاركة الجديد */
+  /* زر المشاركة */
   .share-bar{
     display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;
     margin:1.25rem 0 1.9rem;
@@ -57,7 +61,7 @@
     padding:.6rem .95rem; border-radius:999px; 
     border:1px solid var(--line); background:var(--panel); color:var(--ink);
     font-weight:700; font-size:.88rem; cursor:pointer; text-decoration:none;
-    transition:all .15s;
+    transition:all .15s; font-family:'Cairo',sans-serif;
   }
   .share-btn:hover{border-color:var(--brass); transform:translateY(-1px);}
   .share-btn.primary{
@@ -91,7 +95,7 @@
   .tab{
     flex:1; padding:.7rem; text-align:center; border-radius:9px; cursor:pointer;
     font-weight:700; font-size:.92rem; border:1px solid var(--line); color:var(--muted);
-    background:transparent; transition:background .15s, color .15s;
+    background:transparent; transition:background .15s, color .15s; font-family:'Cairo',sans-serif;
   }
   .tab.active{background:var(--indigo); color:var(--paper); border-color:var(--indigo);}
 
@@ -100,12 +104,12 @@
   .row{display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:.6rem; margin-bottom:1.1rem;}
   select{
     width:100%; padding:.65rem .5rem; border-radius:8px; border:1px solid var(--line);
-    background:var(--paper); color:var(--ink); font-family:inherit; font-size:.95rem;
+    background:var(--paper); color:var(--ink); font-family:'Cairo',inherit; font-size:.95rem;
     font-variant-numeric:tabular-nums;
   }
   button.convert{
     width:100%; padding:.85rem; border:none; border-radius:9px; cursor:pointer;
-    background:var(--brass); color:#241f16; font-family:inherit; font-weight:700; font-size:1rem;
+    background:var(--brass); color:#241f16; font-family:'Cairo',inherit; font-weight:700; font-size:1rem;
   }
   button.convert:hover{background:var(--brass-dark); color:#fff;}
 
@@ -118,15 +122,13 @@
   .result .small{color:var(--muted); font-size:.85rem; margin-top:.25rem;}
 
   section.about{margin-top:2.5rem;}
-  section.about h2{font-size:1.15rem; font-weight:700; margin-bottom:.6rem;}
+  section.about h2{font-size:1.15rem; font-weight:700; margin-bottom:.6rem; font-family:'Cairo',sans-serif;}
   section.about p{color:var(--ink); font-size:.98rem;}
 
   .faq{margin-top:2.5rem;}
-  .faq h2{font-size:1.15rem; font-weight:700; margin-bottom:1rem;}
-  details{
-    border-bottom:1px solid var(--line); padding:.9rem 0;
-  }
-  details summary{font-weight:700; cursor:pointer; font-size:.98rem;}
+  .faq h2{font-size:1.15rem; font-weight:700; margin-bottom:1rem; font-family:'Cairo',sans-serif;}
+  details{border-bottom:1px solid var(--line); padding:.9rem 0;}
+  details summary{font-weight:700; cursor:pointer; font-size:.98rem; font-family:'Cairo',sans-serif;}
   details p{color:var(--muted); margin:.6rem 0 0; font-size:.92rem;}
 
   footer{margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid var(--line);}
@@ -147,9 +149,8 @@
     <p>حوّل أي تاريخ بين التقويمين الهجري والميلادي بضغطة واحدة، بدقة تقويمية قائمة على الحساب الفلكي التبويبي.</p>
   </header>
 
-  <!-- أزرار المشاركة - جديد -->
   <div class="share-bar">
-    <button class="share-btn primary" onclick="copyArabicLink()">🔗 نسخ الرابط</button>
+    <button class="share-btn primary" onclick="copyArabicLink()">🔗 نسخ الرابط </button>
     <a class="share-btn" href="#" onclick="shareWhatsApp(); return false;">واتساب</a>
     <a class="share-btn" href="#" onclick="shareFacebook(); return false;">فيسبوك</a>
     <a class="share-btn" href="#" onclick="shareTelegram(); return false;">تيليجرام</a>
@@ -224,18 +225,10 @@
 </div>
 
 <script>
-// ===== مشاركة الرابط العربي - يحل مشكل %D8% =====
 function getArabicUrl() {
-  // يفك الترميز باش يبقى عربي عند النسخ
-  try {
-    return decodeURI(window.location.href);
-  } catch(e) {
-    return window.location.href;
-  }
+  try { return decodeURI(window.location.href); } catch(e) { return window.location.href; }
 }
-function getEncodedUrl() {
-  return window.location.href;
-}
+function getEncodedUrl() { return window.location.href; }
 function showToast(msg){
   const t = document.getElementById('toast');
   if(msg) t.textContent = msg;
@@ -245,142 +238,65 @@ function showToast(msg){
 function copyArabicLink(){
   const arabicUrl = getArabicUrl();
   if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(arabicUrl).then(()=>showToast('تم نسخ الرابط بالعربي ✅')).catch(()=>{
-      fallbackCopy(arabicUrl);
-    });
-  } else {
-    fallbackCopy(arabicUrl);
-  }
+    navigator.clipboard.writeText(arabicUrl).then(()=>showToast('تم نسخ الرابط بالعربي ✅')).catch(()=>fallbackCopy(arabicUrl));
+  } else { fallbackCopy(arabicUrl); }
 }
 function fallbackCopy(text){
-  const ta = document.createElement('textarea');
-  ta.value = text;
-  document.body.appendChild(ta);
-  ta.select();
-  document.execCommand('copy');
-  document.body.removeChild(ta);
-  showToast('تم نسخ الرابط بالعربي ✅');
+  const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('تم نسخ الرابط بالعربي ✅');
 }
-function shareWhatsApp(){
-  const url = encodeURIComponent(getArabicUrl());
-  window.open('https://wa.me/?text=' + url, '_blank');
-}
-function shareFacebook(){
-  const url = encodeURIComponent(getEncodedUrl());
-  window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
-}
-function shareTelegram(){
-  const url = encodeURIComponent(getEncodedUrl());
-  const text = encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي');
-  window.open('https://t.me/share/url?url=' + url + '&text=' + text, '_blank');
-}
-function shareX(){
-  const url = encodeURIComponent(getEncodedUrl());
-  const text = encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي');
-  window.open('https://twitter.com/intent/tweet?url=' + url + '&text=' + text, '_blank');
-}
+function shareWhatsApp(){ window.open('https://wa.me/?text=' + encodeURIComponent(getArabicUrl()), '_blank'); }
+function shareFacebook(){ window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(getEncodedUrl()), '_blank'); }
+function shareTelegram(){ window.open('https://t.me/share/url?url=' + encodeURIComponent(getEncodedUrl()) + '&text=' + encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي'), '_blank'); }
+function shareX(){ window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(getEncodedUrl()) + '&text=' + encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي'), '_blank'); }
 
-// ===== Tabular Hijri <-> Gregorian conversion =====
 function gregorianToJDN(y, m, d) {
-  const a = Math.floor((14 - m) / 12);
-  const y2 = y + 4800 - a;
-  const m2 = m + 12 * a - 3;
+  const a = Math.floor((14 - m) / 12); const y2 = y + 4800 - a; const m2 = m + 12 * a - 3;
   return d + Math.floor((153 * m2 + 2) / 5) + 365 * y2 + Math.floor(y2 / 4) - Math.floor(y2 / 100) + Math.floor(y2 / 400) - 32045;
 }
 function jdnToGregorian(jdn) {
-  const a = jdn + 32044;
-  const b = Math.floor((4 * a + 3) / 146097);
-  const c = a - Math.floor((146097 * b) / 4);
-  const d = Math.floor((4 * c + 3) / 1461);
-  const e = c - Math.floor((1461 * d) / 4);
-  const m = Math.floor((5 * e + 2) / 153);
-  const day = e - Math.floor((153 * m + 2) / 5) + 1;
-  const month = m + 3 - 12 * Math.floor(m / 10);
-  const year = 100 * b + d - 4800 + Math.floor(m / 10);
+  const a = jdn + 32044; const b = Math.floor((4 * a + 3) / 146097); const c = a - Math.floor((146097 * b) / 4);
+  const d = Math.floor((4 * c + 3) / 1461); const e = c - Math.floor((1461 * d) / 4); const m = Math.floor((5 * e + 2) / 153);
+  const day = e - Math.floor((153 * m + 2) / 5) + 1; const month = m + 3 - 12 * Math.floor(m / 10); const year = 100 * b + d - 4800 + Math.floor(m / 10);
   return {year, month, day};
 }
 function jdnToHijri(jdn) {
-  let l = jdn - 1948440 + 10632;
-  const n = Math.floor((l - 1) / 10631);
-  l = l - 10631 * n + 354;
+  let l = jdn - 1948440 + 10632; const n = Math.floor((l - 1) / 10631); l = l - 10631 * n + 354;
   const j = (Math.floor((10985 - l) / 5316)) * (Math.floor((50 * l) / 17719)) + (Math.floor(l / 5670)) * (Math.floor((43 * l) / 15238));
   l = l - (Math.floor((30 - j) / 15)) * (Math.floor((17719 * j) / 50)) - (Math.floor(j / 16)) * (Math.floor((15238 * j) / 43)) + 29;
-  const hm = Math.floor((24 * l) / 709);
-  const hd = l - Math.floor((709 * hm) / 24);
-  const hy = 30 * n + j - 30;
+  const hm = Math.floor((24 * l) / 709); const hd = l - Math.floor((709 * hm) / 24); const hy = 30 * n + j - 30;
   return {year: hy, month: hm, day: hd};
 }
-function hijriToJDN(hy, hm, hd) {
-  return Math.floor((11 * hy + 3) / 30) + 354 * hy + 30 * hm - Math.floor((hm - 1) / 2) + hd + 1948440 - 385;
-}
-
+function hijriToJDN(hy, hm, hd) { return Math.floor((11 * hy + 3) / 30) + 354 * hy + 30 * hm - Math.floor((hm - 1) / 2) + hd + 1948440 - 385; }
 const hijriMonths = ["محرم","صفر","ربيع الأول","ربيع الآخر","جمادى الأولى","جمادى الآخرة","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة"];
 const gregMonths = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
-
 function fillSelect(el, count, start, labels){
-  el.innerHTML = "";
-  for(let i=0;i<count;i++){
-    const opt = document.createElement("option");
-    const v = start + i;
-    opt.value = v;
-    opt.textContent = labels ? labels[i] : v;
-    el.appendChild(opt);
-  }
+  el.innerHTML = ""; for(let i=0;i<count;i++){ const opt = document.createElement("option"); const v = start + i; opt.value = v; opt.textContent = labels ? labels[i] : v; el.appendChild(opt); }
 }
-
 function initSelectors(){
   const todayJDN = gregorianToJDN(new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate());
-  const todayH = jdnToHijri(todayJDN);
-  const todayG = {year:new Date().getFullYear(), month:new Date().getMonth()+1, day:new Date().getDate()};
-
-  fillSelect(document.getElementById('h_day'), 30, 1);
-  fillSelect(document.getElementById('h_month'), 12, 1, hijriMonths);
-  fillSelect(document.getElementById('h_year'), 120, 1390);
-  document.getElementById('h_day').value = todayH.day;
-  document.getElementById('h_month').value = todayH.month;
-  document.getElementById('h_year').value = todayH.year;
-
-  fillSelect(document.getElementById('g_day'), 31, 1);
-  fillSelect(document.getElementById('g_month'), 12, 1, gregMonths);
-  fillSelect(document.getElementById('g_year'), 150, 1950);
-  document.getElementById('g_day').value = todayG.day;
-  document.getElementById('g_month').value = todayG.month;
-  document.getElementById('g_year').value = todayG.year;
-
-  document.getElementById('todayStrip').innerHTML = `
-    <div><div class="lbl">اليوم ميلاديًا</div><div class="val">${todayG.day} ${gregMonths[todayG.month-1]} ${todayG.year}</div></div>
-    <div><div class="lbl">اليوم هجريًا</div><div class="val">${todayH.day} ${hijriMonths[todayH.month-1]} ${todayH.year}هـ</div></div>
-  `;
+  const todayH = jdnToHijri(todayJDN); const todayG = {year:new Date().getFullYear(), month:new Date().getMonth()+1, day:new Date().getDate()};
+  fillSelect(document.getElementById('h_day'), 30, 1); fillSelect(document.getElementById('h_month'), 12, 1, hijriMonths); fillSelect(document.getElementById('h_year'), 120, 1390);
+  document.getElementById('h_day').value = todayH.day; document.getElementById('h_month').value = todayH.month; document.getElementById('h_year').value = todayH.year;
+  fillSelect(document.getElementById('g_day'), 31, 1); fillSelect(document.getElementById('g_month'), 12, 1, gregMonths); fillSelect(document.getElementById('g_year'), 150, 1950);
+  document.getElementById('g_day').value = todayG.day; document.getElementById('g_month').value = todayG.month; document.getElementById('g_year').value = todayG.year;
+  document.getElementById('todayStrip').innerHTML = `<div><div class="lbl">اليوم ميلاديًا</div><div class="val">${todayG.day} ${gregMonths[todayG.month-1]} ${todayG.year}</div></div><div><div class="lbl">اليوم هجريًا</div><div class="val">${todayH.day} ${hijriMonths[todayH.month-1]} ${todayH.year}هـ</div></div>`;
 }
-
 function convertH2G(){
-  const d = +document.getElementById('h_day').value;
-  const m = +document.getElementById('h_month').value;
-  const y = +document.getElementById('h_year').value;
-  const jdn = hijriToJDN(y, m, d);
-  const g = jdnToGregorian(jdn);
-  document.getElementById('result-h2g-text').textContent = `${g.day} ${gregMonths[g.month-1]} ${g.year}م`;
-  document.getElementById('result-h2g').classList.add('show');
+  const d = +document.getElementById('h_day').value; const m = +document.getElementById('h_month').value; const y = +document.getElementById('h_year').value;
+  const jdn = hijriToJDN(y, m, d); const g = jdnToGregorian(jdn);
+  document.getElementById('result-h2g-text').textContent = `${g.day} ${gregMonths[g.month-1]} ${g.year}م`; document.getElementById('result-h2g').classList.add('show');
 }
 function convertG2H(){
-  const d = +document.getElementById('g_day').value;
-  const m = +document.getElementById('g_month').value;
-  const y = +document.getElementById('g_year').value;
-  const jdn = gregorianToJDN(y, m, d);
-  const h = jdnToHijri(jdn);
-  document.getElementById('result-g2h-text').textContent = `${h.day} ${hijriMonths[h.month-1]} ${h.year}هـ`;
-  document.getElementById('result-g2h').classList.add('show');
+  const d = +document.getElementById('g_day').value; const m = +document.getElementById('g_month').value; const y = +document.getElementById('g_year').value;
+  const jdn = gregorianToJDN(y, m, d); const h = jdnToHijri(jdn);
+  document.getElementById('result-g2h-text').textContent = `${h.day} ${hijriMonths[h.month-1]} ${h.year}هـ`; document.getElementById('result-g2h').classList.add('show');
 }
-
 document.querySelectorAll('.tab').forEach(tab=>{
   tab.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active'); document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
   });
 });
-
 initSelectors();
 </script>
 </body>
