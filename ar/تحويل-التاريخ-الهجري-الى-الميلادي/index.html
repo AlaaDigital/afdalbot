@@ -6,10 +6,12 @@
 <title>تحويل التاريخ الهجري إلى الميلادي والعكس</title>
 <meta name="description" content="أداة مجانية لتحويل التاريخ من الهجري إلى الميلادي والعكس بدقة، مع عرض تاريخ اليوم بالتقويمين.">
 <link rel="canonical" href="https://afdalbot.com/ar/%D8%AA%D8%AD%D9%88%D9%8A%D9%84-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE-%D8%A7%D9%84%D9%87%D8%AC%D8%B1%D9%8A-%D8%A7%D9%84%D9%89-%D8%A7%D9%84%D9%85%D9%8A%D9%84%D8%A7%D8%AF%D9%8A/">
-<!-- خط Cairo للتجربة -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- خط Cairo مستضاف ذاتيا - لا يوجد اتصال خارجي -->
+<link rel="preload" href="/fonts/cairo-v31-arabic_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/cairo-v31-arabic_latin-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -25,123 +27,54 @@
 <style>
   :root{
     --ink:#241f16; --paper:#faf7f0; --panel:#fffdf8;
-    --brass:#b4883f; --brass-dark:#8a6526; --indigo:#1b2540;
-    --line:#e4dcc8; --muted:#6b6353;
-    box-sizing:border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --ink:#efe9da; --paper:#15130f; --panel:#1d1a14;
-      --brass:#d4a94f; --brass-dark:#e8c169; --indigo:#c9d3ec;
-      --line:#332e22; --muted:#9c927a;
-    }
+    --brass:#8a6526; --brass-dark:#6d4e1b; --indigo:#1b2540;
+    --line:#e4dcc8; --muted:#5a5444;
   }
   *{box-sizing:border-box;}
-  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  html{scroll-padding-top:0;}
   body{
     margin:0; background:var(--paper); color:var(--ink);
     font-family:'Cairo',-apple-system,"Segoe UI",Tahoma,Arial,sans-serif; line-height:1.8;
     -webkit-font-smoothing:antialiased;
   }
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
   .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 4rem;}
   header{text-align:center; margin-bottom:1.2rem;}
-  .kicker{color:var(--brass-dark); font-weight:700; font-size:.95rem; letter-spacing:.02em;}
-  h1{font-size:2rem; font-weight:900; margin:.35rem 0 .5rem; line-height:1.4; font-family:'Cairo',sans-serif;}
-  header p{color:var(--muted); font-size:1.02rem; margin:0; max-width:52ch; margin-inline:auto;}
-
-  /* زر المشاركة */
-  .share-bar{
-    display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;
-    margin:1.25rem 0 1.9rem;
-  }
-  .share-btn{
-    display:inline-flex; align-items:center; gap:.4rem;
-    padding:.6rem .95rem; border-radius:999px; 
-    border:1px solid var(--line); background:var(--panel); color:var(--ink);
-    font-weight:700; font-size:.88rem; cursor:pointer; text-decoration:none;
-    transition:all .15s; font-family:'Cairo',sans-serif;
-  }
-  .share-btn:hover{border-color:var(--brass); transform:translateY(-1px);}
-  .share-btn.primary{
-    background:var(--brass); border-color:var(--brass); color:#241f16;
-  }
-  .share-btn.primary:hover{background:var(--brass-dark); color:#fff; border-color:var(--brass-dark);}
-  .toast{
-    position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(20px);
-    background:var(--indigo); color:var(--paper); padding:.7rem 1.1rem; border-radius:999px;
-    font-size:.88rem; font-weight:700; opacity:0; pointer-events:none; transition:all .25s; z-index:9999;
-  }
+  .kicker{color:var(--brass-dark); font-weight:700; font-size:.95rem;}
+  h1{font-size:2rem; font-weight:900; margin:.35rem 0 .5rem; line-height:1.4;}
+  header p{color:var(--muted); font-size:1.02rem; margin:0 auto; max-width:52ch;}
+  .share-bar{display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin:1.25rem 0 1.9rem;}
+  .share-btn{display:inline-flex; align-items:center; gap:.4rem; padding:.6rem .95rem; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--ink); font-weight:700; font-size:.88rem; cursor:pointer; text-decoration:none; font-family:'Cairo',sans-serif; min-height:44px;}
+  .share-btn:hover{border-color:var(--brass);}
+  .share-btn.primary{background:var(--brass); border-color:var(--brass); color:#fff;}
+  .share-btn.primary:hover{background:var(--brass-dark); border-color:var(--brass-dark);}
+  .toast{position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--indigo); color:#fff; padding:.7rem 1.1rem; border-radius:999px; font-size:.88rem; font-weight:700; opacity:0; pointer-events:none; transition:all .25s; z-index:9999;}
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
-
-  .today-strip{
-    display:flex; gap:1px; background:var(--line); border:1px solid var(--line);
-    border-radius:10px; overflow:hidden; margin:1.75rem 0 2.25rem;
-  }
+  .today-strip{display:flex; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:1.75rem 0 2.25rem;}
   .today-strip > div{flex:1; background:var(--panel); padding:.85rem 1rem; text-align:center;}
   .today-strip .lbl{font-size:.78rem; color:var(--muted); margin-bottom:.15rem;}
-  .today-strip .val{font-weight:700; font-variant-numeric:tabular-nums; font-size:.98rem;}
-
-  .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:14px;
-    padding:1.75rem; position:relative;
-  }
-  .card::before{
-    content:""; position:absolute; inset:6px; border:1px solid var(--line);
-    border-radius:9px; pointer-events:none; opacity:.6;
-  }
+  .today-strip .val{font-weight:700; font-size:.98rem;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:1.75rem;}
   .tabs{display:flex; gap:.5rem; margin-bottom:1.5rem;}
-  .tab{
-    flex:1; padding:.7rem; text-align:center; border-radius:9px; cursor:pointer;
-    font-weight:700; font-size:.92rem; border:1px solid var(--line); color:var(--muted);
-    background:transparent; transition:background .15s, color .15s; font-family:'Cairo',sans-serif;
-  }
-  .tab.active{background:var(--indigo); color:var(--paper); border-color:var(--indigo);}
-
-  .panel{display:none;}
-  .panel.active{display:block;}
+  .tab{flex:1; padding:.7rem; text-align:center; border-radius:9px; cursor:pointer; font-weight:700; font-size:.92rem; border:1px solid var(--line); color:var(--muted); background:transparent; font-family:'Cairo',sans-serif; min-height:44px;}
+  .tab.active{background:var(--indigo); color:#fff; border-color:var(--indigo);}
+  .tab:focus-visible{outline:2px solid var(--brass); outline-offset:2px;}
+  .panel{display:none;} .panel.active{display:block;}
   .row{display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:.6rem; margin-bottom:1.1rem;}
-  select{
-    width:100%; padding:.65rem .5rem; border-radius:8px; border:1px solid var(--line);
-    background:var(--paper); color:var(--ink); font-family:'Cairo',inherit; font-size:.95rem;
-    font-variant-numeric:tabular-nums;
-  }
-  button.convert{
-    width:100%; padding:.85rem; border:none; border-radius:9px; cursor:pointer;
-    background:var(--brass); color:#241f16; font-family:'Cairo',inherit; font-weight:700; font-size:1rem;
-  }
-  button.convert:hover{background:var(--brass-dark); color:#fff;}
-
-  .result{
-    margin-top:1.25rem; padding:1.1rem; border-radius:10px; background:var(--paper);
-    border:1px dashed var(--line); text-align:center; display:none;
-  }
-  .result.show{display:block;}
-  .result .big{font-size:1.35rem; font-weight:900; font-variant-numeric:tabular-nums;}
-  .result .small{color:var(--muted); font-size:.85rem; margin-top:.25rem;}
-
-  section.about{margin-top:2.5rem;}
-  section.about h2{font-size:1.15rem; font-weight:700; margin-bottom:.6rem; font-family:'Cairo',sans-serif;}
-  section.about p{color:var(--ink); font-size:.98rem;}
-
-  .faq{margin-top:2.5rem;}
-  .faq h2{font-size:1.15rem; font-weight:700; margin-bottom:1rem; font-family:'Cairo',sans-serif;}
-  details{border-bottom:1px solid var(--line); padding:.9rem 0;}
-  details summary{font-weight:700; cursor:pointer; font-size:.98rem; font-family:'Cairo',sans-serif;}
+  select{width:100%; padding:.65rem .5rem; border-radius:8px; border:1px solid var(--line); background:var(--paper); color:var(--ink); font-family:'Cairo',inherit; font-size:.95rem; min-height:44px;}
+  button.convert{width:100%; padding:.85rem; border:none; border-radius:9px; cursor:pointer; background:var(--brass); color:#fff; font-family:'Cairo',inherit; font-weight:700; font-size:1rem; min-height:44px;}
+  button.convert:hover{background:var(--brass-dark);}
+  .result{margin-top:1.25rem; padding:1.1rem; border-radius:10px; background:var(--paper); border:1px dashed var(--line); text-align:center; display:none;}
+  .result.show{display:block;} .result .big{font-size:1.35rem; font-weight:900;} .result .small{color:var(--muted); font-size:.85rem; margin-top:.25rem;}
+  section.about{margin-top:2.5rem;} section.about h2, .faq h2{font-size:1.15rem; font-weight:700; margin-bottom:.6rem;}
+  .faq{margin-top:2.5rem;} details{border-bottom:1px solid var(--line); padding:.9rem 0;} details summary{font-weight:700; cursor:pointer; font-size:.98rem;}
   details p{color:var(--muted); margin:.6rem 0 0; font-size:.92rem;}
-
-  footer{margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid var(--line);}
-  footer p{color:var(--muted); font-size:.82rem; margin:0;}
-
-  @media (max-width:420px){
-    .row{grid-template-columns:1fr 1fr; }
-    .row select:nth-child(1){grid-column:1 / span 2;}
-  }
+  footer{margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid var(--line);} footer p{color:var(--muted); font-size:.82rem; margin:0;}
+  @media (max-width:420px){ .row{grid-template-columns:1fr 1fr;} .row select:nth-child(1){grid-column:1 / span 2;} }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="wrap" id="main-content">
 
   <header>
     <div class="kicker">أداة مجانية</div>
@@ -149,49 +82,55 @@
     <p>حوّل أي تاريخ بين التقويمين الهجري والميلادي بضغطة واحدة، بدقة تقويمية قائمة على الحساب الفلكي التبويبي.</p>
   </header>
 
-  <div class="share-bar">
-    <button class="share-btn primary" onclick="copyArabicLink()">🔗 نسخ الرابط </button>
-    <a class="share-btn" href="#" onclick="shareWhatsApp(); return false;">واتساب</a>
-    <a class="share-btn" href="#" onclick="shareFacebook(); return false;">فيسبوك</a>
-    <a class="share-btn" href="#" onclick="shareTelegram(); return false;">تيليجرام</a>
-    <a class="share-btn" href="#" onclick="shareX(); return false;">X</a>
-  </div>
-  <div id="toast" class="toast">تم نسخ الرابط بالعربي ✅</div>
+  <nav class="share-bar" aria-label="مشاركة الصفحة">
+    <button type="button" class="share-btn primary" onclick="copyArabicLink()" aria-label="ابط بالعربي">🔗 نسخ الرابط العربي</button>
+    <button type="button" class="share-btn" onclick="shareWhatsApp()" aria-label="مشاركة على واتساب">واتساب</button>
+    <button type="button" class="share-btn" onclick="shareFacebook()" aria-label="مشاركة على فيسبوك">فيسبوك</button>
+    <button type="button" class="share-btn" onclick="shareTelegram()" aria-label="مشاركة على تيليجرام">تيليجرام</button>
+    <button type="button" class="share-btn" onclick="shareX()" aria-label="مشاركة على X">X</button>
+  </nav>
+  <div id="toast" class="toast" role="status" aria-live="polite">الرابط بالعربي ✅</div>
 
-  <div class="today-strip" id="todayStrip"></div>
+  <section class="today-strip" id="todayStrip" aria-label="تاريخ اليوم"></section>
 
-  <div class="card">
-    <div class="tabs">
-      <div class="tab active" data-tab="h2g">هجري إلى ميلادي</div>
-      <div class="tab" data-tab="g2h">ميلادي إلى هجري</div>
+  <section class="card" aria-label="أداة التحويل">
+    <div class="tabs" role="tablist" aria-label="نوع التحويل">
+      <button type="button" class="tab active" role="tab" aria-selected="true" aria-controls="panel-h2g" id="tab-h2g" data-tab="h2g">هجري إلى ميلادي</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="panel-g2h" id="tab-g2h" data-tab="g2h">ميلادي إلى هجري</button>
     </div>
 
-    <div class="panel active" id="panel-h2g">
+    <div class="panel active" id="panel-h2g" role="tabpanel" aria-labelledby="tab-h2g">
       <div class="row">
-        <select id="h_day"></select>
-        <select id="h_month"></select>
-        <select id="h_year"></select>
+        <label class="sr-only" for="h_day">اليوم الهجري</label>
+        <select id="h_day" aria-label="اليوم الهجري"></select>
+        <label class="sr-only" for="h_month">الشهر الهجري</label>
+        <select id="h_month" aria-label="الشهر الهجري"></select>
+        <label class="sr-only" for="h_year">السنة الهجرية</label>
+        <select id="h_year" aria-label="السنة الهجرية"></select>
       </div>
-      <button class="convert" onclick="convertH2G()">حوّل التاريخ</button>
-      <div class="result" id="result-h2g">
+      <button type="button" class="convert" onclick="convertH2G()" aria-label="حوّل من هجري إلى ميلادي">حوّل التاريخ</button>
+      <div class="result" id="result-h2g" aria-live="polite">
         <div class="big" id="result-h2g-text"></div>
         <div class="small">التاريخ الميلادي الموافق</div>
       </div>
     </div>
 
-    <div class="panel" id="panel-g2h">
+    <div class="panel" id="panel-g2h" role="tabpanel" aria-labelledby="tab-g2h" hidden>
       <div class="row">
-        <select id="g_day"></select>
-        <select id="g_month"></select>
-        <select id="g_year"></select>
+        <label class="sr-only" for="g_day">اليوم الميلادي</label>
+        <select id="g_day" aria-label="اليوم الميلادي"></select>
+        <label class="sr-only" for="g_month">الشهر الميلادي</label>
+        <select id="g_month" aria-label="الشهر الميلادي"></select>
+        <label class="sr-only" for="g_year">السنة الميلادية</label>
+        <select id="g_year" aria-label="السنة الميلادية"></select>
       </div>
-      <button class="convert" onclick="convertG2H()">حوّل التاريخ</button>
-      <div class="result" id="result-g2h">
+      <button type="button" class="convert" onclick="convertG2H()" aria-label="حوّل من ميلادي إلى هجري">حوّل التاريخ</button>
+      <div class="result" id="result-g2h" aria-live="polite">
         <div class="big" id="result-g2h-text"></div>
         <div class="small">التاريخ الهجري الموافق</div>
       </div>
     </div>
-  </div>
+  </section>
 
   <section class="about">
     <h2>ما الفرق بين التقويمين؟</h2>
@@ -222,9 +161,10 @@
     <p>الحسابات مبنية على التقويم الهجري التبويبي (الحسابي)، وقد تختلف عن التقويم الرسمي المعتمد على رؤية الهلال بيوم واحد في بعض الأشهر.</p>
   </footer>
 
-</div>
+</main>
 
 <script>
+// ===== مشاركة الرابط العربي - يحل مشكل %D8% =====
 function getArabicUrl() {
   try { return decodeURI(window.location.href); } catch(e) { return window.location.href; }
 }
@@ -249,6 +189,7 @@ function shareFacebook(){ window.open('https://www.facebook.com/sharer/sharer.ph
 function shareTelegram(){ window.open('https://t.me/share/url?url=' + encodeURIComponent(getEncodedUrl()) + '&text=' + encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي'), '_blank'); }
 function shareX(){ window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(getEncodedUrl()) + '&text=' + encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي'), '_blank'); }
 
+// ===== تحويل التاريخ =====
 function gregorianToJDN(y, m, d) {
   const a = Math.floor((14 - m) / 12); const y2 = y + 4800 - a; const m2 = m + 12 * a - 3;
   return d + Math.floor((153 * m2 + 2) / 5) + 365 * y2 + Math.floor(y2 / 4) - Math.floor(y2 / 100) + Math.floor(y2 / 400) - 32045;
@@ -293,8 +234,11 @@ function convertG2H(){
 }
 document.querySelectorAll('.tab').forEach(tab=>{
   tab.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-    tab.classList.add('active'); document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>{ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.panel').forEach(p=>{ p.classList.remove('active'); p.hidden = true; });
+    tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+    const panel = document.getElementById('panel-'+tab.dataset.tab);
+    panel.classList.add('active'); panel.hidden = false;
   });
 });
 initSelectors();
