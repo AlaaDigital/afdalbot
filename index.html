@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أفدال بوت | أدوات إلكترونية مجانية وسريعة</title>
+<meta name="description" content="مجموعة أدوات إلكترونية مجانية: تحويل التاريخ الهجري والميلادي، وأدوات تحويل وحساب إضافية قريبًا. بدون تسجيل وبدون إعلانات مزعجة.">
+<link rel="canonical" href="https://afdalbot.com/">
+<style>
+  :root{
+    --ink:#241f16; --paper:#faf7f0; --panel:#fffdf8;
+    --brass:#b4883f; --brass-dark:#8a6526; --indigo:#1b2540;
+    --line:#e4dcc8; --muted:#6b6353;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#efe9da; --paper:#15130f; --panel:#1d1a14;
+      --brass:#d4a94f; --brass-dark:#e8c169; --indigo:#c9d3ec;
+      --line:#332e22; --muted:#9c927a;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Tahoma,Arial,sans-serif; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:3rem 1.25rem 4rem;}
+
+  .langbar{
+    display:flex; justify-content:center; gap:.5rem; margin-bottom:2rem; flex-wrap:wrap;
+  }
+  .langbar span{
+    padding:.3rem .8rem; border-radius:20px; font-size:.8rem; font-weight:700;
+  }
+  .langbar .active{background:var(--indigo); color:var(--paper);}
+  .langbar .soon-lang{border:1px dashed var(--line); color:var(--muted);}
+
+  header{text-align:center; margin-bottom:2.75rem;}
+  .kicker{color:var(--brass-dark); font-weight:700; font-size:.95rem;}
+  h1{font-size:2.1rem; font-weight:900; margin:.4rem 0 .6rem;}
+  header p{color:var(--muted); font-size:1.05rem; max-width:46ch; margin:0 auto;}
+
+  h2{font-size:1.2rem; font-weight:700; margin:0 0 1rem;}
+
+  .tools{display:grid; gap:1rem; margin-bottom:2.75rem;}
+  .tool-card{
+    display:block; background:var(--panel); border:1px solid var(--line);
+    border-radius:12px; padding:1.4rem; text-decoration:none; color:inherit;
+    position:relative;
+  }
+  .tool-card::before{
+    content:""; position:absolute; inset:5px; border:1px solid var(--line);
+    border-radius:8px; opacity:.55; pointer-events:none;
+  }
+  .tool-card .name{font-weight:700; font-size:1.05rem; margin-bottom:.3rem;}
+  .tool-card .desc{color:var(--muted); font-size:.92rem;}
+  .tool-card .go{
+    display:inline-block; margin-top:.7rem; color:var(--brass-dark); font-weight:700; font-size:.88rem;
+  }
+
+  .soon{
+    background:transparent; border:1px dashed var(--line); border-radius:12px;
+    padding:1.2rem 1.4rem; margin-bottom:2.75rem;
+  }
+  .soon h2{font-size:1rem; color:var(--muted); margin-bottom:.7rem;}
+  .soon ul{margin:0; padding-inline-start:1.2rem; color:var(--muted); font-size:.92rem;}
+  .soon li{margin-bottom:.35rem;}
+
+  section.about p{color:var(--ink); font-size:.98rem;}
+
+  footer{margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid var(--line); text-align:center;}
+  footer p{color:var(--muted); font-size:.82rem; margin:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="langbar">
+    <span class="active">العربية</span>
+    <span class="soon-lang">English — قريبًا</span>
+    <span class="soon-lang">Français — قريبًا</span>
+  </div>
+
+  <header>
+    <div class="kicker">أفدال بوت</div>
+    <h1>أدوات إلكترونية مجانية وسريعة</h1>
+    <p>أدوات عملية تنجز مهمة واحدة بسرعة ودقة، بدون تسجيل، بدون تعقيد، وبدون إعلانات مزعجة.</p>
+  </header>
+
+  <div class="tools">
+    <h2>الأدوات المتاحة</h2>
+    <a class="tool-card" href="/ar/تحويل-التاريخ-الهجري-الى-الميلادي/">
+      <div class="name">تحويل التاريخ الهجري إلى الميلادي والعكس</div>
+      <div class="desc">حوّل أي تاريخ بين التقويمين بضغطة واحدة، مع عرض تاريخ اليوم بالتقويمين تلقائيًا.</div>
+      <span class="go">افتح الأداة ←</span>
+    </a>
+  </div>
+
+  <div class="soon">
+    <h2>قريبًا على الموقع</h2>
+    <ul>
+      <li>تحويل صورة إلى PDF</li>
+      <li>حاسبات مالية وتعليمية متنوعة</li>
+      <li>أدوات نصية عربية (تشكيل، عدّ كلمات، وأخرى)</li>
+    </ul>
+  </div>
+
+  <section class="about">
+    <h2>ليش أفدال بوت؟</h2>
+    <p>نبني أدوات بسيطة تحل مشكلة محددة بدقة، بدون خطوات زائدة أو تسجيل إجباري. كل أداة تُختبر قبل نشرها، ونوضح بصفحتها حدود الدقة إن وُجدت. الموقع بالعربي حاليًا، مع خطة لإضافة لغات إضافية لاحقًا.</p>
+  </section>
+
+  <footer>
+    <p>© 2026 أفدال بوت. جميع الأدوات مجانية للاستخدام الشخصي.</p>
+  </footer>
+
+</div>
+</body>
+</html>
