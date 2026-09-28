@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تحويل صورة إلى PDF مجانًا</title>
+<meta name="description" content="حوّل صورة أو عدة صور إلى ملف PDF واحد مباشرة من متصفحك، بدون رفع لأي سيرفر وبدون تسجيل. كل معالجة تتم على جهازك.">
+<link rel="canonical" href="https://afdalbot.com/ar/تحويل-صورة-الى-بي-دي-اف/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"هل تُرفع صوري لأي سيرفر؟","acceptedAnswer":{"@type":"Answer","text":"لا. التحويل كله يتم داخل متصفحك مباشرة عبر جافاسكريبت، والصور لا تغادر جهازك إطلاقًا ولا تُرسل لأي خادم خارجي."}},
+    {"@type":"Question","name":"كم صورة أقدر أحوّل بملف PDF واحد؟","acceptedAnswer":{"@type":"Answer","text":"تقدر تضيف عدة صور دفعة واحدة، وكل صورة تصير صفحة منفصلة داخل نفس ملف PDF، بنفس ترتيب اختيارك لها."}},
+    {"@type":"Question","name":"هل تدعم الأداة جميع صيغ الصور؟","acceptedAnswer":{"@type":"Answer","text":"تدعم الصيغ الشائعة كلها: JPG وPNG وWEBP وغيرها من الصيغ التي يدعمها متصفحك."}},
+    {"@type":"Question","name":"هل تتأثر جودة الصورة أثناء التحويل؟","acceptedAnswer":{"@type":"Answer","text":"تُحفظ الصورة داخل ملف PDF بجودة عالية جدًا قريبة من الأصل، وحجم الصفحة يطابق أبعاد الصورة نفسها دون تشويه أو قص."}}
+  ]
+}
+</script>
+<style>
+  :root{
+    --ink:#241f16; --paper:#faf7f0; --panel:#fffdf8;
+    --brass:#b4883f; --brass-dark:#8a6526; --indigo:#1b2540;
+    --line:#e4dcc8; --muted:#6b6353; --err:#a3402f;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#efe9da; --paper:#15130f; --panel:#1d1a14;
+      --brass:#d4a94f; --brass-dark:#e8c169; --indigo:#c9d3ec;
+      --line:#332e22; --muted:#9c927a; --err:#e08b74;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Tahoma,Arial,sans-serif; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 4rem;}
+  header{text-align:center; margin-bottom:2rem;}
+  .kicker{color:var(--brass-dark); font-weight:700; font-size:.95rem;}
+  h1{font-size:1.9rem; font-weight:900; margin:.35rem 0 .5rem; line-height:1.35;}
+  header p{color:var(--muted); font-size:1.02rem; margin:0; max-width:52ch; margin-inline:auto;}
+
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:1.75rem; position:relative;
+  }
+  .card::before{
+    content:""; position:absolute; inset:6px; border:1px solid var(--line);
+    border-radius:9px; pointer-events:none; opacity:.6;
+  }
+
+  .drop{
+    border:2px dashed var(--line); border-radius:10px; padding:2rem 1rem;
+    text-align:center; cursor:pointer; color:var(--muted); font-weight:700;
+  }
+  .drop.drag{border-color:var(--brass); color:var(--brass-dark);}
+  input[type=file]{display:none;}
+
+  .thumbs{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.1rem;}
+  .thumb{position:relative; width:72px; height:72px; border-radius:8px; overflow:hidden; border:1px solid var(--line);}
+  .thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .thumb .n{position:absolute; top:2px; right:2px; background:var(--indigo); color:var(--paper); font-size:.7rem; font-weight:700; border-radius:5px; padding:0 .3rem;}
+  .thumb .rm{position:absolute; bottom:2px; left:2px; background:var(--err); color:#fff; font-size:.7rem; line-height:1; border-radius:5px; padding:.2rem .35rem; cursor:pointer;}
+
+  button.convert{
+    width:100%; padding:.85rem; border:none; border-radius:9px; cursor:pointer;
+    background:var(--brass); color:#241f16; font-family:inherit; font-weight:700; font-size:1rem;
+    margin-top:1.25rem;
+  }
+  button.convert:disabled{opacity:.5; cursor:not-allowed;}
+  button.convert:not(:disabled):hover{background:var(--brass-dark); color:#fff;}
+
+  .status{margin-top:1rem; min-height:1.4rem; font-size:.9rem; color:var(--muted); text-align:center;}
+  .status.err{color:var(--err);}
+
+  section.about{margin-top:2.5rem;}
+  section.about h2{font-size:1.15rem; font-weight:700; margin-bottom:.6rem;}
+  section.about p{color:var(--ink); font-size:.98rem;}
+
+  .faq{margin-top:2.5rem;}
+  .faq h2{font-size:1.15rem; font-weight:700; margin-bottom:1rem;}
+  details{border-bottom:1px solid var(--line); padding:.9rem 0;}
+  details summary{font-weight:700; cursor:pointer; font-size:.98rem;}
+  details p{color:var(--muted); margin:.6rem 0 0; font-size:.92rem;}
+
+  footer{margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid var(--line);}
+  footer p{color:var(--muted); font-size:.82rem; margin:0;}
+  a.home{color:var(--brass-dark); font-weight:700; text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">أداة مجانية</div>
+    <h1>تحويل صورة إلى PDF</h1>
+    <p>حوّل صورة أو عدة صور إلى ملف PDF واحد فورًا. المعالجة كلها داخل متصفحك، وصورك لا تُرفع لأي سيرفر.</p>
+  </header>
+
+  <div class="card">
+    <label class="drop" id="drop" for="fileInput">
+      اضغط هنا لاختيار الصور، أو اسحبها وأفلتها
+    </label>
+    <input type="file" id="fileInput" accept="image/*" multiple>
+
+    <div class="thumbs" id="thumbs"></div>
+
+    <button class="convert" id="convertBtn" disabled>حوّل إلى PDF وحمّل</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <section class="about">
+    <h2>كيف تعمل الأداة؟</h2>
+    <p>تختار صورة واحدة أو أكثر، وتنشئ الأداة ملف PDF واحد داخل متصفحك مباشرة بترتيب اختيارك، كل صورة في صفحة مستقلة بنفس أبعادها الأصلية. لا حاجة لرفع الملفات أو الانتظار، ولا حاجة لتسجيل حساب.</p>
+  </section>
+
+  <section class="faq">
+    <h2>أسئلة شائعة</h2>
+    <details><summary>هل تُرفع صوري لأي سيرفر؟</summary><p>لا. التحويل كله يتم داخل متصفحك مباشرة عبر جافاسكريبت، والصور لا تغادر جهازك إطلاقًا ولا تُرسل لأي خادم خارجي.</p></details>
+    <details><summary>كم صورة أقدر أحوّل بملف PDF واحد؟</summary><p>تقدر تضيف عدة صور دفعة واحدة، وكل صورة تصير صفحة منفصلة داخل نفس ملف PDF، بنفس ترتيب اختيارك لها.</p></details>
+    <details><summary>هل تدعم الأداة جميع صيغ الصور؟</summary><p>تدعم الصيغ الشائعة كلها: JPG وPNG وWEBP وغيرها من الصيغ التي يدعمها متصفحك.</p></details>
+    <details><summary>هل تتأثر جودة الصورة أثناء التحويل؟</summary><p>تُحفظ الصورة داخل ملف PDF بجودة عالية جدًا قريبة من الأصل، وحجم الصفحة يطابق أبعاد الصورة نفسها دون تشويه أو قص.</p></details>
+  </section>
+
+  <footer>
+    <p>أداة من <a class="home" href="/">أفدال بوت</a>. جميع الأدوات مجانية وتعمل بدون تسجيل.</p>
+  </footer>
+
+</div>
+
+<script>
+let files = [];
+
+const dropEl = document.getElementById('drop');
+const inputEl = document.getElementById('fileInput');
+const thumbsEl = document.getElementById('thumbs');
+const btnEl = document.getElementById('convertBtn');
+const statusEl = document.getElementById('status');
+
+inputEl.addEventListener('change', e => addFiles(e.target.files));
+['dragover','dragenter'].forEach(ev => dropEl.addEventListener(ev, e => { e.preventDefault(); dropEl.classList.add('drag'); }));
+['dragleave','drop'].forEach(ev => dropEl.addEventListener(ev, e => { e.preventDefault(); dropEl.classList.remove('drag'); }));
+dropEl.addEventListener('drop', e => addFiles(e.dataTransfer.files));
+
+function addFiles(list){
+  for (const f of list) if (f.type.startsWith('image/')) files.push(f);
+  renderThumbs();
+}
+function removeFile(i){ files.splice(i,1); renderThumbs(); }
+
+function renderThumbs(){
+  thumbsEl.innerHTML = '';
+  files.forEach((f,i) => {
+    const url = URL.createObjectURL(f);
+    const div = document.createElement('div');
+    div.className = 'thumb';
+    div.innerHTML = `<img src="${url}"><span class="n">${i+1}</span><span class="rm" data-i="${i}">✕</span>`;
+    thumbsEl.appendChild(div);
+  });
+  thumbsEl.querySelectorAll('.rm').forEach(b => b.addEventListener('click', e => removeFile(+e.target.dataset.i)));
+  btnEl.disabled = files.length === 0;
+  statusEl.textContent = '';
+  statusEl.className = 'status';
+}
+
+// ---- image loading: file -> {bytes(JPEG), width, height} ----
+function loadImageFile(file){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      canvas.toBlob(blob => {
+        blob.arrayBuffer().then(buf => {
+          URL.revokeObjectURL(url);
+          resolve({bytes: new Uint8Array(buf), width: canvas.width, height: canvas.height});
+        });
+      }, 'image/jpeg', 0.92);
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+// ---- byte helpers ----
+function strToBytes(s){
+  const a = new Uint8Array(s.length);
+  for (let i=0;i<s.length;i++) a[i] = s.charCodeAt(i) & 0xFF;
+  return a;
+}
+function concatBytes(chunks){
+  let total = 0; chunks.forEach(c => total += c.length);
+  const out = new Uint8Array(total);
+  let pos = 0; chunks.forEach(c => { out.set(c,pos); pos += c.length; });
+  return out;
+}
+
+// ---- verified PDF builder (tested offline against qpdf --check) ----
+function buildPdf(images){
+  const chunks = [];
+  let offset = 0;
+  const offsets = [];
+  function push(buf){ chunks.push(buf); offset += buf.length; }
+  function recordAndPush(num, buf){ offsets[num-1] = offset; push(buf); }
+
+  push(strToBytes('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n'));
+
+  const n = images.length;
+  const objCount = 2 + n*3;
+  const catalogNum = 1, pagesNum = 2;
+  const pageNum = i => 3 + i*3;
+  const contentNum = i => 4 + i*3;
+  const imageNum = i => 5 + i*3;
+
+  const kids = [];
+  for (let i=0;i<n;i++) kids.push(pageNum(i)+' 0 R');
+
+  recordAndPush(catalogNum, strToBytes(`${catalogNum} 0 obj\n<< /Type /Catalog /Pages ${pagesNum} 0 R >>\nendobj\n`));
+  recordAndPush(pagesNum, strToBytes(`${pagesNum} 0 obj\n<< /Type /Pages /Kids [${kids.join(' ')}] /Count ${n} >>\nendobj\n`));
+
+  for (let i=0;i<n;i++){
+    const im = images[i];
+    const W = im.width, H = im.height;
+    const pNum = pageNum(i), cNum = contentNum(i), iNum = imageNum(i);
+
+    recordAndPush(pNum, strToBytes(
+      `${pNum} 0 obj\n<< /Type /Page /Parent ${pagesNum} 0 R /MediaBox [0 0 ${W} ${H}] `+
+      `/Resources << /XObject << /Im0 ${iNum} 0 R >> >> /Contents ${cNum} 0 R >>\nendobj\n`
+    ));
+
+    const contentStr = `q ${W} 0 0 ${H} 0 0 cm /Im0 Do Q`;
+    recordAndPush(cNum, strToBytes(
+      `${cNum} 0 obj\n<< /Length ${contentStr.length} >>\nstream\n${contentStr}\nendstream\nendobj\n`
+    ));
+
+    const header = strToBytes(
+      `${iNum} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${W} /Height ${H} `+
+      `/ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${im.bytes.length} >>\nstream\n`
+    );
+    const footer = strToBytes(`\nendstream\nendobj\n`);
+    offsets[iNum-1] = offset;
+    push(header);
+    push(im.bytes);
+    push(footer);
+  }
+
+  const xrefStart = offset;
+  let xref = `xref\n0 ${objCount+1}\n0000000000 65535 f \n`;
+  for (let num=1; num<=objCount; num++) xref += String(offsets[num-1]).padStart(10,'0') + ' 00000 n \n';
+  push(strToBytes(xref));
+  push(strToBytes(`trailer\n<< /Size ${objCount+1} /Root ${catalogNum} 0 R >>\nstartxref\n${xrefStart}\n%%EOF`));
+
+  return concatBytes(chunks);
+}
+
+btnEl.addEventListener('click', async () => {
+  btnEl.disabled = true;
+  statusEl.className = 'status';
+  statusEl.textContent = 'جارٍ التحويل...';
+  try{
+    const images = [];
+    for (const f of files) images.push(await loadImageFile(f));
+    const pdfBytes = buildPdf(images);
+    const blob = new Blob([pdfBytes], {type:'application/pdf'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'converted.pdf';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    statusEl.textContent = 'تم التحويل والتحميل ✓';
+  }catch(err){
+    statusEl.className = 'status err';
+    statusEl.textContent = 'صار خطأ أثناء التحويل، جرّب صور أخرى.';
+  }
+  btnEl.disabled = files.length === 0;
+});
+</script>
+</body>
+</html>
