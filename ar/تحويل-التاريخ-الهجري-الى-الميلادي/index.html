@@ -42,10 +42,34 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 4rem;}
-  header{text-align:center; margin-bottom:2rem;}
+  header{text-align:center; margin-bottom:1.2rem;}
   .kicker{color:var(--brass-dark); font-weight:700; font-size:.95rem; letter-spacing:.02em;}
   h1{font-size:1.9rem; font-weight:900; margin:.35rem 0 .5rem; line-height:1.35;}
   header p{color:var(--muted); font-size:1.02rem; margin:0; max-width:52ch; margin-inline:auto;}
+
+  /* زر المشاركة الجديد */
+  .share-bar{
+    display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;
+    margin:1.25rem 0 1.9rem;
+  }
+  .share-btn{
+    display:inline-flex; align-items:center; gap:.4rem;
+    padding:.6rem .95rem; border-radius:999px; 
+    border:1px solid var(--line); background:var(--panel); color:var(--ink);
+    font-weight:700; font-size:.88rem; cursor:pointer; text-decoration:none;
+    transition:all .15s;
+  }
+  .share-btn:hover{border-color:var(--brass); transform:translateY(-1px);}
+  .share-btn.primary{
+    background:var(--brass); border-color:var(--brass); color:#241f16;
+  }
+  .share-btn.primary:hover{background:var(--brass-dark); color:#fff; border-color:var(--brass-dark);}
+  .toast{
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--indigo); color:var(--paper); padding:.7rem 1.1rem; border-radius:999px;
+    font-size:.88rem; font-weight:700; opacity:0; pointer-events:none; transition:all .25s; z-index:9999;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
 
   .today-strip{
     display:flex; gap:1px; background:var(--line); border:1px solid var(--line);
@@ -123,6 +147,16 @@
     <p>حوّل أي تاريخ بين التقويمين الهجري والميلادي بضغطة واحدة، بدقة تقويمية قائمة على الحساب الفلكي التبويبي.</p>
   </header>
 
+  <!-- أزرار المشاركة - جديد -->
+  <div class="share-bar">
+    <button class="share-btn primary" onclick="copyArabicLink()">🔗 نسخ الرابط</button>
+    <a class="share-btn" href="#" onclick="shareWhatsApp(); return false;">واتساب</a>
+    <a class="share-btn" href="#" onclick="shareFacebook(); return false;">فيسبوك</a>
+    <a class="share-btn" href="#" onclick="shareTelegram(); return false;">تيليجرام</a>
+    <a class="share-btn" href="#" onclick="shareX(); return false;">X</a>
+  </div>
+  <div id="toast" class="toast">تم نسخ الرابط بالعربي ✅</div>
+
   <div class="today-strip" id="todayStrip"></div>
 
   <div class="card">
@@ -190,6 +224,62 @@
 </div>
 
 <script>
+// ===== مشاركة الرابط العربي - يحل مشكل %D8% =====
+function getArabicUrl() {
+  // يفك الترميز باش يبقى عربي عند النسخ
+  try {
+    return decodeURI(window.location.href);
+  } catch(e) {
+    return window.location.href;
+  }
+}
+function getEncodedUrl() {
+  return window.location.href;
+}
+function showToast(msg){
+  const t = document.getElementById('toast');
+  if(msg) t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+function copyArabicLink(){
+  const arabicUrl = getArabicUrl();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(arabicUrl).then(()=>showToast('تم نسخ الرابط بالعربي ✅')).catch(()=>{
+      fallbackCopy(arabicUrl);
+    });
+  } else {
+    fallbackCopy(arabicUrl);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  showToast('تم نسخ الرابط بالعربي ✅');
+}
+function shareWhatsApp(){
+  const url = encodeURIComponent(getArabicUrl());
+  window.open('https://wa.me/?text=' + url, '_blank');
+}
+function shareFacebook(){
+  const url = encodeURIComponent(getEncodedUrl());
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
+}
+function shareTelegram(){
+  const url = encodeURIComponent(getEncodedUrl());
+  const text = encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي');
+  window.open('https://t.me/share/url?url=' + url + '&text=' + text, '_blank');
+}
+function shareX(){
+  const url = encodeURIComponent(getEncodedUrl());
+  const text = encodeURIComponent('تحويل التاريخ الهجري إلى الميلادي');
+  window.open('https://twitter.com/intent/tweet?url=' + url + '&text=' + text, '_blank');
+}
+
 // ===== Tabular Hijri <-> Gregorian conversion =====
 function gregorianToJDN(y, m, d) {
   const a = Math.floor((14 - m) / 12);
