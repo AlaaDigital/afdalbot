@@ -17,64 +17,29 @@
   @font-face{font-family:'Cairo';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-700.woff2') format('woff2');}
   @font-face{font-family:'Cairo';font-style:normal;font-weight:900;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-900.woff2') format('woff2');}
   @font-face{font-family:'Cairo Fallback';src:local('Tahoma'),local('Arial');ascent-override:105%;descent-override:35%;line-gap-override:10%;size-adjust:102%;}
-  :root{
-    --ink:#1e1a12; --paper:#faf7f0; --panel:#fffdf8;
-    --brass:#b4883f; --brass-dark:#614a1f; --indigo:#1b2540;
-    --line:#e4dcc8; --muted:#4f4a3e;
-    box-sizing:border-box;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --ink:#efe9da; --paper:#15130f; --panel:#1d1a14;
-      --brass:#d4a94f; --brass-dark:#e8c169; --indigo:#c9d3ec;
-      --line:#332e22; --muted:#b8b0a0;
-    }
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Cairo','Cairo Fallback',-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:760px;margin:0 auto;padding:2.5rem 1.25rem 4rem;}
-  header{text-align:center;margin-bottom:1.2rem;}
-  .kicker{color:var(--brass-dark);font-weight:700;font-size:.95rem;}
-  h1{font-size:1.9rem;font-weight:900;margin:.35rem 0 .5rem;line-height:1.35;}
-  header p{color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:52ch;}
+  :root{--ink:#1e1a12;--paper:#faf7f0;--panel:#fffdf8;--brass:#b4883f;--brass-dark:#614a1f;--indigo:#1b2540;--line:#e4dcc8;--muted:#4f4a3e;}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#efe9da;--paper:#15130f;--panel:#1d1a14;--brass:#d4a94f;--brass-dark:#e8c169;--indigo:#c9d3ec;--line:#332e22;--muted:#b8b0a0;}}
+  *{box-sizing:border-box;}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Cairo','Cairo Fallback',-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:2.5rem 1.25rem 4rem;}header{text-align:center;margin-bottom:1.2rem;}.kicker{color:var(--brass-dark);font-weight:700;font-size:.95rem;}h1{font-size:1.9rem;font-weight:900;margin:.35rem 0 .5rem;line-height:1.35;}header p{color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:52ch;}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   .share-bar{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.25rem 0 1.9rem;min-height:44px;}
   .share-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:700;font-size:.88rem;cursor:pointer;font-family:inherit;min-height:44px;}
-  .share-btn.primary{background:var(--brass);border-color:var(--brass);color:#1e1a12;}
-  .share-btn:hover{border-color:var(--brass);}
-  .share-btn.primary:hover{background:var(--brass-dark);color:#fff;}
+  .share-btn.primary{background:var(--brass);border-color:var(--brass);color:#1e1a12;}.share-btn:hover{border-color:var(--brass);}.share-btn.primary:hover{background:var(--brass-dark);color:#fff;}
   .share-btn:focus-visible,.tab:focus-visible,select:focus-visible,button.convert:focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
-  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--indigo);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:all .25s;z-index:9999;}
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.75rem;position:relative;}
-  .card::before{content:"";position:absolute;inset:6px;border:1px solid var(--line);border-radius:9px;pointer-events:none;opacity:.6;}
-  .tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;}
-  .tab{flex:1;padding:.7rem;text-align:center;border-radius:9px;cursor:pointer;font-weight:700;font-size:.88rem;border:1px solid var(--line);color:var(--muted);background:transparent;font-family:inherit;min-height:44px;}
-  .tab.active{background:var(--indigo);color:var(--paper);border-color:var(--indigo);}
-  .panel{display:none;}
-  .panel.active{display:block;}
-  .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1.1rem;}
-  .row.two{grid-template-columns:1fr 1fr;}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--indigo);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:all .25s;z-index:9999;}.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.75rem;position:relative;}.card::before{content:"";position:absolute;inset:6px;border:1px solid var(--line);border-radius:9px;pointer-events:none;opacity:.6;}
+  .tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;}.tab{flex:1;padding:.7rem;text-align:center;border-radius:9px;cursor:pointer;font-weight:700;font-size:.88rem;border:1px solid var(--line);color:var(--muted);background:transparent;font-family:inherit;min-height:44px;}.tab.active{background:var(--indigo);color:var(--paper);border-color:var(--indigo);}
+  .panel{display:none;}.panel.active{display:block;}.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1.1rem;}.row.two{grid-template-columns:1fr 1fr;}
   select{width:100%;padding:.65rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-family:inherit;font-size:.95rem;font-variant-numeric:tabular-nums;min-height:44px;}
-  button.convert{width:100%;padding:.85rem;border:none;border-radius:9px;cursor:pointer;background:var(--brass);color:#1e1a12;font-family:inherit;font-weight:700;font-size:1rem;min-height:44px;}
-  button.convert:hover{background:var(--brass-dark);color:#fff;}
-  .results{margin-top:1.5rem;display:none;min-height:260px;}
-  .results.show{display:block;}
-  .age-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem;}
-  .age-box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:1rem;text-align:center;}
-  .age-box .cal{font-size:.8rem;color:var(--muted);font-weight:700;margin-bottom:.4rem;}
-  .age-box .big{font-size:1.6rem;font-weight:900;font-variant-numeric:tabular-nums;color:var(--indigo);}
-  .age-box .unit{font-size:.78rem;color:var(--muted);margin-top:.2rem;}
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
-  .stats>div{background:var(--panel);padding:.8rem .9rem;}
-  .stats .lbl{font-size:.78rem;color:var(--muted);margin-bottom:.2rem;}
-  .stats .val{font-weight:700;font-variant-numeric:tabular-nums;font-size:.92rem;}
-  section.about{margin-top:2.5rem;} section.about h2{font-size:1.15rem;font-weight:700;margin-bottom:.6rem;} section.about p{font-size:.98rem;}
-  .faq{margin-top:2.5rem;} .faq h2{font-size:1.15rem;font-weight:700;margin-bottom:1rem;}
-  details{border-bottom:1px solid var(--line);padding:.9rem 0;} details summary{font-weight:700;cursor:pointer;font-size:.98rem;} details p{color:var(--muted);margin:.6rem 0 0;font-size:.92rem;}
-  footer{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--line);} footer p{color:var(--muted);font-size:.82rem;margin:0;}
-  a.home{color:var(--brass-dark);font-weight:700;text-decoration:none;}
-  @media (max-width:520px){.row{grid-template-columns:1fr;} .row.two{grid-template-columns:1fr;} .age-grid{grid-template-columns:1fr;}}
+  button.convert{width:100%;padding:.85rem;border:none;border-radius:9px;cursor:pointer;background:var(--brass);color:#1e1a12;font-family:inherit;font-weight:700;font-size:1rem;min-height:44px;}button.convert:hover{background:var(--brass-dark);color:#fff;}
+  .results{margin-top:1.5rem;display:none;min-height:260px;}.results.show{display:block;}
+  .age-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem;}.age-box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:1rem;text-align:center;}.age-box .cal{font-size:.8rem;color:var(--muted);font-weight:700;margin-bottom:.4rem;}.age-box .big{font-size:1.6rem;font-weight:900;font-variant-numeric:tabular-nums;color:var(--indigo);}.age-box .unit{font-size:.78rem;color:var(--muted);margin-top:.2rem;}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}.stats>div{background:var(--panel);padding:.8rem .9rem;}.stats .lbl{font-size:.78rem;color:var(--muted);margin-bottom:.2rem;}.stats .val{font-weight:700;font-variant-numeric:tabular-nums;font-size:.92rem;}
+  section.about{margin-top:2.5rem;}section.about h2{font-size:1.15rem;font-weight:700;margin-bottom:.6rem;}section.about p{font-size:.98rem;}
+  .related{margin-top:2.5rem;}.related h2{font-size:1.15rem;font-weight:700;margin-bottom:1rem;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}.related-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.6rem;transition:border-color .2s;}.related-card:hover{border-color:var(--brass);}
+  .faq{margin-top:2.5rem;}.faq h2{font-size:1.15rem;font-weight:700;margin-bottom:1rem;}details{border-bottom:1px solid var(--line);padding:.9rem 0;}details summary{font-weight:700;cursor:pointer;font-size:.98rem;}details p{color:var(--muted);margin:.6rem 0 0;font-size:.92rem;}
+  footer{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--line);}footer p{color:var(--muted);font-size:.82rem;margin:0;}a.home{color:var(--brass-dark);font-weight:700;text-decoration:none;}
+  @media (max-width:520px){.row{grid-template-columns:1fr;} .row.two{grid-template-columns:1fr;} .age-grid{grid-template-columns:1fr;} .related-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -85,37 +50,32 @@
     <p>أدخل نسبك في الثانوي والقدرات والتحصيلي، واحصل على نسبتك الموزونة فوراً مع تفصيل الحساب وتوقعات القبول.</p>
   </header>
   <nav class="share-bar" aria-label="مشاركة الصفحة">
-    <button type="button" class="share-btn primary" onclick="copyArabicLink()" aria-label="نسخ الرابط بالعربي">🔗 نسخ الرابط العربي</button>
-    <button type="button" class="share-btn" onclick="shareWhatsApp()" aria-label="مشاركة على واتساب">واتساب</button>
-    <button type="button" class="share-btn" onclick="shareFacebook()" aria-label="مشاركة على فيسبوك">فيسبوك</button>
-    <button type="button" class="share-btn" onclick="shareTelegram()" aria-label="مشاركة على تيليجرام">تيليجرام</button>
-    <button type="button" class="share-btn" onclick="shareX()" aria-label="مشاركة على X">X</button>
+    <button type="button" class="share-btn primary" onclick="copyArabicLink()">🔗 نسخ الرابط العربي</button>
+    <button type="button" class="share-btn" onclick="shareWhatsApp()">واتساب</button>
+    <button type="button" class="share-btn" onclick="shareFacebook()">فيسبوك</button>
+    <button type="button" class="share-btn" onclick="shareTelegram()">تيليجرام</button>
+    <button type="button" class="share-btn" onclick="shareX()">X</button>
   </nav>
   <div id="toast" class="toast" role="status" aria-live="polite">تم نسخ الرابط بالعربي ✅</div>
   <div class="card">
-    <div class="tabs" role="tablist" aria-label="نوع الحساب">
+    <div class="tabs" role="tablist">
       <button class="tab active" role="tab" aria-selected="true" data-tab="sci">المسار العلمي 30-30-40</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="theo">النظري / المكافئة 50-50</button>
     </div>
     <div class="panel active" id="panel-sci" role="tabpanel">
       <div class="row">
-        <label class="sr-only" for="s_high">نسبة الثانوي</label>
         <select id="s_high" aria-label="نسبة الثانوي"></select>
-        <label class="sr-only" for="s_qud">درجة القدرات</label>
         <select id="s_qud" aria-label="درجة القدرات"></select>
-        <label class="sr-only" for="s_tah">درجة التحصيلي</label>
         <select id="s_tah" aria-label="درجة التحصيلي"></select>
       </div>
-      <button class="convert" onclick="calcSci()" aria-label="احسب الموزونة للمسار العلمي">احسب الموزونة</button>
+      <button class="convert" onclick="calcSci()">احسب الموزونة</button>
     </div>
     <div class="panel" id="panel-theo" role="tabpanel">
       <div class="row two">
-        <label class="sr-only" for="t_high">نسبة الثانوي</label>
         <select id="t_high" aria-label="نسبة الثانوي للمسار النظري"></select>
-        <label class="sr-only" for="t_qud">درجة القدرات</label>
         <select id="t_qud" aria-label="درجة القدرات للمسار النظري"></select>
       </div>
-      <button class="convert" onclick="calcTheo()" aria-label="احسب النسبة المكافئة">احسب المكافئة</button>
+      <button class="convert" onclick="calcTheo()">احسب المكافئة</button>
     </div>
     <div class="results" id="results" aria-live="polite">
       <div class="age-grid">
@@ -135,6 +95,15 @@
   <section class="about">
     <h2>ليش تختلف النسبة الموزونة بين الجامعات؟</h2>
     <p>كل جامعة تحدد أوزان مختلفة. الأكثر شيوعاً للعلمي 30% ثانوي و 30% قدرات و 40% تحصيلي، وبعض الجامعات تستخدم 20-30-50. المسار النظري يحسب كمكافئة 50% ثانوي و 50% قدرات بدون تحصيلي.</p>
+  </section>
+  <section class="related">
+    <h2>أدوات ذات صلة</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/ar/حساب-النسبة-المكافئة/"><span>📊</span><span><span style="display:block;font-weight:700;font-size:.92rem">حساب النسبة المكافئة</span><span style="font-size:.78rem;color:var(--muted)">للمسار النظري 50-50</span></span></a>
+      <a class="related-card" href="/ar/حساب-المعدل-التراكمي/"><span>🎓</span><span><span style="display:block;font-weight:700;font-size:.92rem">حساب المعدل التراكمي</span><span style="font-size:.78rem;color:var(--muted)">من 4 ومن 5</span></span></a>
+      <a class="related-card" href="/ar/حساب-العمر/"><span>🎂</span><span><span style="display:block;font-weight:700;font-size:.92rem">حساب العمر</span><span style="font-size:.78rem;color:var(--muted)">هجري وميلادي</span></span></a>
+      <a class="related-card" href="/ar/تحويل-التاريخ-الهجري-الى-الميلادي/"><span>📅</span><span><span style="display:block;font-weight:700;font-size:.92rem">تحويل التاريخ الهجري</span><span style="font-size:.78rem;color:var(--muted)">هجري إلى ميلادي</span></span></a>
+    </div>
   </section>
   <section class="faq">
     <h2>أسئلة شائعة</h2>
