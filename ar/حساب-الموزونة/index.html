@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حساب الموزونة - حساب النسبة الموزونة للجامعات السعودية</title>
+<meta name="description" content="احسب النسبة الموزونة للجامعات السعودية فوراً. أدخل درجة الثانوية والقدرات والتحصيلي مع إمكانية تعديل أوزان النسب حسب جامعتك - علمي 30/30/40 وأدبي 50/50.">
+<link rel="canonical" href="https://afdalbot.com/ar/%D8%AD%D8%B3%D8%A7%D8%A8-%D8%A7%D9%84%D9%85%D9%88%D8%B2%D9%88%D9%86%D8%A9/">
+<link rel="preload" href="/fonts/cairo-v31-arabic_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/cairo-v31-arabic_latin-700.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ما هي النسبة الموزونة؟","acceptedAnswer":{"@type":"Answer","text":"النسبة الموزونة هي مجموع درجاتك موزونة بأهمية كل اختبار. مثال: 30% ثانوية + 30% قدرات + 40% تحصيلي."}}]}</script>
+<style>
+  @font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-regular.woff2') format('woff2');}
+  @font-face{font-family:'Cairo';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-700.woff2') format('woff2');}
+  @font-face{font-family:'Cairo';font-style:normal;font-weight:900;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-900.woff2') format('woff2');}
+  @font-face{font-family:'Cairo Fallback';src:local('Tahoma'),local('Arial');ascent-override:105%;descent-override:35%;line-gap-override:10%;size-adjust:102%;}
+  :root{--ink:#241f16;--paper:#faf7f0;--panel:#fffdf8;--brass:#8a6526;--brass-dark:#6d4e1b;--indigo:#1b2540;--line:#e4dcc8;--muted:#5a5444;}
+  *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:'Cairo','Cairo Fallback',-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.8}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .wrap{max-width:720px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+  header{text-align:center;margin-bottom:1.2rem}.kicker{color:var(--brass-dark);font-weight:700;font-size:.95rem}h1{font-size:2rem;font-weight:900;margin:.35rem 0 .5rem;line-height:1.4}header p{color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:52ch}
+  .share-bar{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.25rem 0 1.9rem;min-height:44px}
+  .share-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:700;font-size:.88rem;cursor:pointer;font-family:'Cairo',sans-serif;min-height:44px}
+  .share-btn.primary{background:var(--brass);border-color:var(--brass);color:#fff}.share-btn:hover{border-color:var(--brass)}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--indigo);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:all .25s;z-index:9999}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .today-strip{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:1.75rem 0 2.25rem;min-height:68px}.today-strip>div{flex:1;background:var(--panel);padding:.85rem 1rem;text-align:center}.today-strip .lbl{font-size:.78rem;color:var(--muted);margin-bottom:.15rem}.today-strip .val{font-weight:700;font-size:.98rem}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.75rem}
+  .tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;min-height:44px}.tab{flex:1;padding:.7rem;text-align:center;border-radius:9px;cursor:pointer;font-weight:700;font-size:.92rem;border:1px solid var(--line);color:var(--muted);background:transparent;font-family:'Cairo',sans-serif;min-height:44px}.tab.active{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+  .row{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:.6rem;margin-bottom:1.1rem} select,input[type="number"]{width:100%;padding:.65rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-family:'Cairo',inherit;font-size:.95rem;min-height:44px}
+  button.convert{width:100%;padding:.85rem;border:none;border-radius:9px;cursor:pointer;background:var(--brass);color:#fff;font-family:'Cairo',inherit;font-weight:700;font-size:1rem;min-height:44px}button.convert:hover{background:var(--brass-dark)}
+  .result{margin-top:1.25rem;padding:1.1rem;border-radius:10px;background:var(--paper);border:1px dashed var(--line);text-align:center;display:none;min-height:88px}.result.show{display:block}.result .big{font-size:1.6rem;font-weight:900}.result .small{color:var(--muted);font-size:.85rem;margin-top:.25rem}.result .break{color:var(--muted);font-size:.82rem;margin-top:.6rem}
+  .alert{border:1px solid #B91C1C;background:#FEF2F2;color:#B91C1C;border-radius:8px;padding:.6rem .8rem;font-size:.84rem;display:none;margin-bottom:1rem;text-align:center}.alert.show{display:block}
+  section.about{margin-top:2.5rem}section.about h2,.faq h2{font-size:1.15rem;font-weight:700;margin-bottom:.6rem}.faq{margin-top:2.5rem}details{border-bottom:1px solid var(--line);padding:.9rem 0}details summary{font-weight:700;cursor:pointer;font-size:.98rem}details p{color:var(--muted);margin:.6rem 0 0;font-size:.92rem}
+  footer{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--line)}footer p{color:var(--muted);font-size:.82rem;margin:0}
+  @media (max-width:420px){.row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header><div class="kicker">أداة مجانية</div><h1>حساب الموزونة - حساب النسبة الموزونة للجامعات</h1><p>احسب نسبتك الموزونة فوراً مع إمكانية تعديل أوزان الثانوية والقدرات والتحصيلي حسب دليل قبول جامعتك.</p></header>
+<nav class="share-bar"><button class="share-btn primary" onclick="copyArabicLink()">🔗 نسخ الرابط العربي</button><button class="share-btn" onclick="shareWhatsApp()">واتساب</button><button class="share-btn" onclick="shareFacebook()">فيسبوك</button><button class="share-btn" onclick="shareTelegram()">تيليجرام</button><button class="share-btn" onclick="shareX()">X</button></nav>
+<div id="toast" class="toast">تم نسخ الرابط بالعربي ✅</div>
+<section class="today-strip"><div><div class="lbl">علمي شائع</div><div class="val">30% ثانوي + 30% قدرات + 40% تحصيلي</div></div><div><div class="lbl">أدبي / إداري</div><div class="val">50% ثانوي + 50% قدرات</div></div></section>
+<section class="card">
+<div class="tabs"><button class="tab active" data-preset="scientific">علمي 30/30/40</button><button class="tab" data-preset="literary">أدبي 50/50</button><button class="tab" data-preset="without-tahsili">بدون تحصيلي</button></div>
+<div id="weight-alert" class="alert">مجموع الأوزان يجب أن يساوي 100% — الحالي <span id="weight-sum">100</span>%</div>
+<label style="font-weight:700;font-size:.92rem;margin-bottom:.6rem;display:block">أوزان النسب (قابلة للتعديل):</label>
+<div class="row"><select id="w-sec"></select><select id="w-qud"></select><select id="w-tah"></select></div>
+<label style="font-weight:700;font-size:.92rem;margin-bottom:.6rem;display:block;margin-top:1.2rem">درجاتك (0-100):</label>
+<div class="row"><input id="g-sec" type="number" min="0" max="100" step="0.01" placeholder="الثانوية %"><input id="g-qud" type="number" min="0" max="100" step="0.01" placeholder="القدرات %"><input id="g-tah" type="number" min="0" max="100" step="0.01" placeholder="التحصيلي %"></div>
+<button class="convert" id="calc-btn">احسب موزونتي الآن</button>
+<div class="result" id="result-box"><div class="big" id="result-big"></div><div class="small">النسبة الموزونة</div><div class="break" id="result-break"></div></div>
+</section>
+<section class="faq"><h2>أسئلة شائعة</h2>
+<details><summary>ما هي النسبة الموزونة؟</summary><p>هي مجموع درجاتك موزونة بأ
