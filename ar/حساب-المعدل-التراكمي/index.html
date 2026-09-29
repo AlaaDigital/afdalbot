@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حساب المعدل التراكمي 1446 - الجامعي والثانوي</title>
+<meta name="description" content="احسب معدلك التراكمي الجامعي من 4 ومن 5 بسهولة - أدخل الساعات والتقديرات واحصل على معدلك الفصلي والتراكمي فوراً.">
+<link rel="canonical" href="https://afdalbot.com/ar/حساب-المعدل-التراكمي/">
+<link rel="preload" href="/fonts/cairo-v31-arabic_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/cairo-v31-arabic_latin-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/cairo-v31-arabic_latin-900.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"كيف أحسب المعدل التراكمي؟","acceptedAnswer":{"@type":"Answer","text":"المعدل = مجموع (الساعات × نقاط التقدير) ÷ مجموع الساعات."}},{"@type":"Question","name":"ما الفرق بين معدل 4 ومعدل 5؟","acceptedAnswer":{"@type":"Answer","text":"بعض الجامعات السعودية تستخدم سلم 5 وبعضها سلم 4، التقديرات نفسها لكن النقاط تختلف."}},{"@type":"Question","name":"كيف أحسب التقدير من المعدل؟","acceptedAnswer":{"@type":"Answer","text":"ممتاز من 4.5 من 5 أو 3.5 من 4، جيد جدا من 3.75 من 5، جيد من 2.75، مقبول من 2."}}]}
+</script>
+<style>
+  @font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-regular.woff2') format('woff2');}
+  @font-face{font-family:'Cairo';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-700.woff2') format('woff2');}
+  @font-face{font-family:'Cairo';font-style:normal;font-weight:900;font-display:optional;src:url('/fonts/cairo-v31-arabic_latin-900.woff2') format('woff2');}
+  @font-face{font-family:'Cairo Fallback';src:local('Tahoma'),local('Arial');ascent-override:105%;descent-override:35%;line-gap-override:10%;size-adjust:102%;}
+  :root{--ink:#1e1a12;--paper:#faf7f0;--panel:#fffdf8;--brass:#b4883f;--brass-dark:#614a1f;--indigo:#1b2540;--line:#e4dcc8;--muted:#4f4a3e;}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#efe9da;--paper:#15130f;--panel:#1d1a14;--brass:#d4a94f;--brass-dark:#e8c169;--indigo:#c9d3ec;--line:#332e22;--muted:#b8b0a0;}}
+  *{box-sizing:border-box;}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Cairo','Cairo Fallback',-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:2.5rem 1.25rem 4rem;}header{text-align:center;margin-bottom:1.2rem;}.kicker{color:var(--brass-dark);font-weight:700;font-size:.95rem;}h1{font-size:1.9rem;font-weight:900;margin:.35rem 0 .5rem;line-height:1.35;}header p{color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:52ch;}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .share-bar{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.25rem 0 1.9rem;min-height:44px;}
+  .share-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:700;font-size:.88rem;cursor:pointer;font-family:inherit;min-height:44px;}
+  .share-btn.primary{background:var(--brass);border-color:var(--brass);color:#1e1a12;}.share-btn:hover{border-color:var(--brass);}.share-btn.primary:hover{background:var(--brass-dark);color:#fff;}
+  .share-btn:focus-visible,.tab:focus-visible,select:focus-visible,button.convert:focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--indigo);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:all .25s;z-index:9999;}.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.75rem;position:relative;}.card::before{content:"";position:absolute;inset:6px;border:1px solid var(--line);border-radius:9px;pointer-events:none;opacity:.6;}
+  .tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;}.tab{flex:1;padding:.7rem;text-align:center;border-radius:9px;cursor:pointer;font-weight:700;font-size:.88rem;border:1px solid var(--line);color:var(--muted);background:transparent;font-family:inherit;min-height:44px;}.tab.active{background:var(--indigo);color:var(--paper);border-color:var(--indigo);}
+  .panel{display:none;}.panel.active{display:block;}
+  .course-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.6rem;}
+  .course-label{font-size:.82rem;color:var(--muted);font-weight:700;margin-bottom:.2rem;}
+  select{width:100%;padding:.65rem .5rem;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-family:inherit;font-size:.9rem;min-height:44px;}
+  button.convert{width:100%;padding:.85rem;border:none;border-radius:9px;cursor:pointer;background:var(--brass);color:#1e1a12;font-family:inherit;font-weight:700;font-size:1rem;min-height:44px;margin-top:.6rem;}button.convert:hover{background:var(--brass-dark);color:#fff;}
+  .results{margin-top:1.5rem;display:none;min-height:260px;}.results.show{display:block;}
+  .age-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem;}.age-box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:1rem;text-align:center;}.age-box .cal{font-size:.8rem;color:var(--muted);font-weight:700;margin-bottom:.4rem;}.age-box .big{font-size:1.6rem;font-weight:900;color:var(--indigo);}.age-box .unit{font-size:.78rem;color:var(--muted);margin-top:.2rem;}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}.stats>div{background:var(--panel);padding:.8rem .9rem;}.stats .lbl{font-size:.78rem;color:var(--muted);margin-bottom:.2rem;}.stats .val{font-weight:700;font-size:.92rem;}
+  section.about{margin-top:2.5rem;}section.about h2{font-size:1.15rem;font-weight:700;margin-bottom:.6rem;}section.about p{font-size:.98rem;}
+  .faq{margin-top:2.5rem;}.faq h2{font-size:1.15rem;font-weight:700;margin-bottom:1rem;}details{border-bottom:1px solid var(--line);padding:.9rem 0;}details summary{font-weight:700;cursor:pointer;font-size:.98rem;}details p{color:var(--muted);margin:.6rem 0 0;font-size:.92rem;}
+  .related{margin-top:2.5rem;} .related h2{font-size:1.15rem;font-weight:700;margin-bottom:1rem;} .related-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+  .related-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.6rem;}.related-card:hover{border-color:var(--brass);}
+  footer{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--line);}footer p{color:var(--muted);font-size:.82rem;margin:0;}a.home{color:var(--brass-dark);font-weight:700;text-decoration:none;}
+  @media (max-width:520px){.course-row{grid-template-columns:1fr 1fr;} .age-grid{grid-template-columns:1fr;} .related-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">أداة مجانية</div>
+    <h1>حساب المعدل التراكمي 1446</h1>
+    <p>احسب معدلك الجامعي من 4 ومن 5 - أدخل عدد الساعات والتقدير لكل مادة واحصل على معدلك فوراً.</p>
+  </header>
+  <nav class="share-bar" aria-label="مشاركة">
+    <button type="button" class="share-btn primary" onclick="copyArabicLink()">🔗 نسخ الرابط العربي</button>
+    <button type="button" class="share-btn" onclick="shareWhatsApp()">واتساب</button>
+    <button type="button" class="share-btn" onclick="shareFacebook()">فيسبوك</button>
+    <button type="button" class="share-btn" onclick="shareTelegram()">تيليجرام</button>
+    <button type="button" class="share-btn" onclick="shareX()">X</button>
+  </nav>
+  <div id="toast" class="toast">تم نسخ الرابط بالعربي ✅</div>
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="5" aria-selected="true">معدل من 5</button>
+      <button class="tab" data-tab="4" aria-selected="false">معدل من 4</button>
+    </div>
+    <div class="panel active" id="panel-5" role="tabpanel">
+      <div id="courses5"></div>
+      <button class="convert" onclick="calcGPA(5)">احسب المعدل من 5</button>
+    </div>
+    <div class="panel" id="panel-4" role="tabpanel">
+      <div id="courses4"></div>
+      <button class="convert" onclick="calcGPA(4)">احسب المعدل من 4</button>
+    </div>
+    <div class="results" id="results" aria-live="polite">
+      <div class="age-grid">
+        <div class="age-box"><div class="cal">معدلك الفصلي</div><div class="big" id="gpa">0.00</div><div class="unit" id="gpaScale">من 5</div></div>
+        <div class="age-box"><div class="cal">التقدير</div><div class="big" id="taq">-</div><div class="unit" id="taqDesc">-</div></div>
+      </div>
+      <div class="stats">
+        <div><div class="lbl">مجموع الساعات</div><div class="val" id="totalHours">0</div></div>
+        <div><div class="lbl">مجموع النقاط</div><div class="val" id="totalPoints">0</div></div>
+        <div><div class="lbl">النسبة المئوية</div><div class="val" id="percent">0%</div></div>
+        <div><div class="lbl">المعدل من 4</div><div class="val" id="to4">-</div></div>
+        <div><div class="lbl">المعدل من 5</div><div class="val" id="to5">-</div></div>
+        <div><div class="lbl">نصيحة</div><div class="val" id="tip">-</div></div>
+      </div>
+    </div>
+  </div>
+  <section class="about">
+    <h2>كيف أحسب المعدل التراكمي؟</h2>
+    <p>المعدل = مجموع (عدد الساعات × نقاط التقدير) ÷ مجموع الساعات. من 5: A+ =5 و A=4.75 و B+=4.5 و B=4. من 4: A+=4 و A=3.75 و B+=3.5 و B=3.</p>
+  </section>
+  <section class="related">
+    <h2>أدوات ذات صلة</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/ar/حساب-الموزونة/"><span>⚖️</span><span><span style="display:block;font-weight:700;font-size:.92rem">حساب الموزونة</span><span style="font-size:.78rem;color:var(--muted)">للقبول الجامعي</span></span></a>
+      <a class="related-card" href="/ar/حساب-النسبة-المكافئة/"><span>📊</span><span><span style="display:block;font-weight:700;font-size:.92rem">حساب المكافئة</span><span style="font-size:.78rem;color:var(--muted)">المسار النظري</span></span></a>
+      <a class="related-card" href="/ar/حساب-العمر/"><span>🎂</span><span><span style="display:block;font-weight:700;font-size:.92rem">حساب العمر</span><span style="font-size:.78rem;color:var(--muted)">هجري وميلادي</span></span></a>
+      <a class="related-card" href="/ar/محول-التاريخ/"><span>📅</span><span><span style="display:block;font-weight:700;font-size:.92rem">محول التاريخ</span><span style="font-size:.78rem;color:var(--muted)">هجري لميلادي</span></span></a>
+    </div>
+  </section>
+  <section class="faq">
+    <h2>أسئلة شائعة</h2>
+    <details><summary>كيف أحسب المعدل التراكمي؟</summary><p>المعدل = مجموع (الساعات × نقاط التقدير) ÷ مجموع الساعات.</p></details>
+    <details><summary>ما الفرق بين معدل 4 ومعدل 5؟</summary><p>بعض الجامعات تستخدم سلم 5 وبعضها 4، النقاط تختلف لكن طريقة الحساب نفسها.</p></details>
+    <details><summary>كيف أحسب التقدير من المعدل؟</summary><p>ممتاز من 4.5 من 5، جيد جدا من 3.75، جيد من 2.75، مقبول من 2.</p></details>
+  </section>
+  <footer><p>أداة من <a class="home" href="/">أفدال بوت</a>. جميع الأدوات مجانية.</p></footer>
+</div>
+<script>
+function getArabicUrl(){try{return decodeURI(location.href);}catch(e){return location.href;}}
+function getEncodedUrl(){return location.href;}
+function showToast(m){var t=document.getElementById('toast');if(m)t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2200);}
+function copyArabicLink(){var u=getArabicUrl();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){showToast('تم نسخ الرابط بالعربي ✅');}).catch(function(){fallbackCopy(u);});}else fallbackCopy(u);}
+function fallbackCopy(t){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('تم نسخ الرابط بالعربي ✅');}catch(e){}document.body.removeChild(ta);}
+function shareWhatsApp(){open('https://wa.me/?text='+encodeURIComponent(getArabicUrl()),'_blank');}
+function shareFacebook(){open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(getEncodedUrl()),'_blank');}
+function shareTelegram(){open('https://t.me/share/url?url='+encodeURIComponent(getEncodedUrl())+'&text='+encodeURIComponent('حساب المعدل التراكمي 1446'),'_blank');}
+function shareX(){open('https://twitter.com/intent/tweet?url='+encodeURIComponent(getEncodedUrl())+'&text='+encodeURIComponent('حساب المعدل التراكمي 1446'),'_blank');}
+var grades5={'A+':5,'A':4.75,'B+':4.5,'B':4,'C+':3.5,'C':3,'D+':2.5,'D':2,'F':0};
+var grades4={'A+':4,'A':3.75,'B+':3.5,'B':3,'C+':2.5,'C':2,'D+':1.5,'D':1,'F':0};
+function buildCourses(containerId,grades){
+  var c=document.getElementById(containerId);c.innerHTML='';
+  for(var i=1;i<=5;i++){
+    var row=document.createElement('div');row.className='course-row';
+    var col1=document.createElement('div');var lab1=document.createElement('div');lab1.className='course-label';lab1.textContent='المادة '+i+' - الساعات';
+    var selH=document.createElement('select');selH.id=containerId+'_h_'+i;selH.setAttribute('aria-label','ساعات المادة '+i);
+    for(var h=0;h<=6;h++){var o=document.createElement('option');o.value=h;o.textContent=h==0?'اختر الساعات':h+' ساعات';if(h==3&&i<=3)o.selected=true;selH.appendChild(o);}
+    col1.appendChild(lab1);col1.appendChild(selH);
+    var col2=document.createElement('div');var lab2=document.createElement('div');lab2.className='course-label';lab2.textContent='التقدير';
+    var selG=document.createElement('select');selG.id=containerId+'_g_'+i;selG.setAttribute('aria-label','تقدير المادة '+i);
+    var defs=['A+','A','B+','B','C+'];for(var k in grades){var og=document.createElement('option');og.value=grades[k];og.textContent=k+' ('+grades[k]+')';if(k==defs[i-1])og.selected=true;selG.appendChild(og);}
+    var of=document.createElement('option');of.value='';of.textContent='بدون';selG.appendChild(of);
+    col2.appendChild(lab2);col2.appendChild(selG);
+    row.appendChild(col1);row.appendChild(col2);c.appendChild(row);
+  }
+}
+function init(){buildCourses('courses5',grades5);buildCourses('courses4',grades4);}
+function calcGPA(scale){
+  var pref=scale==5?'courses5':'courses4';var totalH=0,totalP=0;
+  for(var i=1;i<=5;i++){var h=parseFloat(document.getElementById(pref+'_h_'+i).value)||0;var p=parseFloat(document.getElementById(pref+'_g_'+i).value);if(isNaN(p))p=0;if(h>0&&p>0){totalH+=h;totalP+=h*p;}}
+  if(totalH==0){showToast('أدخل مادة واحدة على الأقل');return;}
+  var gpa=totalP/totalH;var percent=scale==5?(gpa/5*100):(gpa/4*100);
+  var res=document.getElementById('results');
+  document.getElementById('gpa').textContent=gpa.toFixed(2);document.getElementById('gpaScale').textContent='من '+scale;
+  var taq='';var desc='';if(scale==5){if(gpa>=4.5){taq='ممتاز';desc='الأولى';}else if(gpa>=3.75){taq='جيد جدا';desc='مرتبة شرف';}else if(gpa>=2.75){taq='جيد';desc='مقبول عالي';}else if(gpa>=2){taq='مقبول';desc='ناجح';}else{taq='راسب';desc='تحتاج تحسين';}}else{if(gpa>=3.5){taq='ممتاز';desc='الأولى';}else if(gpa>=2.75){taq='جيد جدا';desc='مرتبة شرف';}else if(gpa>=1.75){taq='جيد';desc='جيد';}else if(gpa>=1){taq='مقبول';desc='ناجح';}else{taq='راسب';desc='تحتاج تحسين';}}
+  document.getElementById('taq').textContent=taq;document.getElementById('taqDesc').textContent=desc;
+  document.getElementById('totalHours').textContent=totalH;document.getElementById('totalPoints').textContent=totalP.toFixed(2);
+  document.getElementById('percent').textContent=percent.toFixed(1)+'%';
+  document.getElementById('to4').textContent=scale==5?(gpa/5*4).toFixed(2)+' من 4':gpa.toFixed(2)+' من 4';
+  document.getElementById('to5').textContent=scale==4?(gpa/4*5).toFixed(2)+' من 5':gpa.toFixed(2)+' من 5';
+  document.getElementById('tip').textContent=percent>=90?'حافظ على مستواك':percent>=80?'قريب من الامتياز':'ركز على المواد القادمة';
+  res.classList.add('show');res.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+document.querySelectorAll('.tab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});tab.classList.add('active');tab.setAttribute('aria-selected','true');document.getElementById('panel-'+tab.dataset.tab).classList.add('active');document.getElementById('results').classList.remove('show');});});
+init();
+</script>
+</body>
+</html>
