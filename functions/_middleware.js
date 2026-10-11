@@ -1,6 +1,8 @@
 export async function onRequest({ request, next }) {
   const url = new URL(request.url);
-  url.pathname = decodeURIComponent(url.pathname);
+  try {
+    url.pathname = decodeURIComponent(url.pathname);
+  } catch(e) {}
   const newRequest = new Request(url, request);
   return next(newRequest);
 }
